@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import artif_start
+#from .models import artif_start
 
 # Create your views here.
 def homepage(request):
