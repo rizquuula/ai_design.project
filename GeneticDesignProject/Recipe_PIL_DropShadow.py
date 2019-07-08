@@ -6,8 +6,8 @@ License: Python license
 """
 from PIL import Image, ImageFilter
 
-def dropShadow( image, offset=(5,5), background=0xffffff, shadow=0x444444, 
-                border=20, iterations=4):
+def dropShadow( image, offset=(20,20), background=0xffffff, shadow=0x444444, 
+                border=20, iterations=10):
   """
   Add a gaussian blur drop shadow to an image.  
   
@@ -24,13 +24,13 @@ def dropShadow( image, offset=(5,5), background=0xffffff, shadow=0x444444,
   
   # Create the backdrop image -- a box in the background colour with a 
   # shadow on it.
-  totalWidth = image.size[0] + abs(offset[0]) + 2*border
-  totalHeight = image.size[1] + abs(offset[1]) + 2*border
+  totalWidth = image.size[0] + abs(offset[0]) + 5*border
+  totalHeight = image.size[1] + abs(offset[1]) + 5*border
   back = Image.new(image.mode, (totalWidth, totalHeight), background)
   
   # Place the shadow, taking into account the offset from the image
-  shadowLeft = border + max(offset[0], 0)
-  shadowTop = border + max(offset[1], 0)
+  shadowLeft = 0#border + max(offset[0], 0)
+  shadowTop = 0#border + max(offset[1], 0)
   back.paste(shadow, [shadowLeft, shadowTop, shadowLeft + image.size[0], 
     shadowTop + image.size[1]] )
   
@@ -57,6 +57,6 @@ if __name__ == "__main__":
   image.thumbnail( (400,400), Image.ANTIALIAS)
 
 #   dropShadow(image).show()
-  dropShadow(image, background=0xeeeeee, shadow=0x444444, offset=(0,1)).show()
+  dropShadow(image, background=0xeeeeee, shadow=0x444444).show()
    
     
