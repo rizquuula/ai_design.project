@@ -1,7 +1,8 @@
 import cv2 
 import numpy as np 
+from PIL import ImageFont, ImageDraw, Image, ImageFilter
 
-def crop1x1(img_source,img_size):
+def crop1x1_cv2(img_source,img_size):
     #img_source = str(img_source)
     #img = cv2.imread(img_source)
     img = img_source

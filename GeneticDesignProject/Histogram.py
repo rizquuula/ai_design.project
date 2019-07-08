@@ -31,7 +31,7 @@ def BGR_hist(img_source):
     # plt.show()
 
     ValColorDominant = np.max(ColorDominant)
-    b, g, r, a = ValColorDominant,ValColorDominant,ValColorDominant, 255
+    b, g, r, a = ValColorDominant,ValColorDominant,ValColorDominant, 1
     return b, g, r, a
 
 def Offset_hist(BGRA):
