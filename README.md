@@ -1,7 +1,7 @@
 # ai_design.project
 # Setup:
 - Python 3.6
-- Library: Django, HttpRequest, Numpy, Matplotlib, Tensorflow, Sklearn, Keras
+- Library: Django, HttpRequest, Numpy, Matplotlib, Tensorflow, Sklearn, Keras, PIL
 
 # What the folder about?
 - ARTIF_project is folder for Django web development
