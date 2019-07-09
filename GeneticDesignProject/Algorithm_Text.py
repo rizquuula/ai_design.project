@@ -8,12 +8,12 @@ def TextDrawShade(size=None, font=None,
     draw = ImageDraw.Draw(img_pil)
     textsize = font.getsize(text)   #Getting the width of the text
     # print('Text size = ',textsize)
-    
-    # draw.text((placex+margin,placey+margin), TEXT, font = font, fill = Offset_hist(BGR_hist(img)))#(b, g, r, a))
-    # draw.text((placex+margin,placey-margin), TEXT, font = font, fill = Offset_hist(BGR_hist(img)))#(b, g, r, a))
-    # draw.text((placex-margin,placey+margin), TEXT, font = font, fill = Offset_hist(BGR_hist(img)))#(b, g, r, a))
-    # draw.text((placex-margin,placey-margin), TEXT, font = font, fill = Offset_hist(BGR_hist(img)))#(b, g, r, a))
-    
+    margin = 1
+    draw.text((placex+margin,placey+margin), text, font = font, fill = fill)
+    draw.text((placex+margin,placey-margin), text, font = font, fill = fill)
+    draw.text((placex-margin,placey+margin), text, font = font, fill = fill)
+    draw.text((placex-margin,placey-margin), text, font = font, fill = fill)
     draw.text((placex,placey), text, font = font, fill =fill) 
+    
     result = img_pil.filter(ImageFilter.GaussianBlur(radius=radius))
     return result

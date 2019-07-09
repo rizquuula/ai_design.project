@@ -9,7 +9,7 @@ from Algorithm_Crop1x1 import crop1x1_cv2
 from Histogram import BGR_hist, Offset_hist, BW_hist
 from Algorithm_Text import TextDrawShade
 
-img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/example.jpg",1)
+img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/example2.jpg",1)
 original_img = img
 img = crop1x1_cv2(img,600)#max(img.shape[:2]))
 cv2.imwrite('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/crop1x1_cv2.jpg',img)
@@ -44,7 +44,7 @@ mask_img = TextDrawShade(size=overlay_img.size,
             placex=PLACE_X,
             placey=PLACE_Y,
             fill=255,
-            radius=5
+            radius=3         
             )
 # print('shape 1 = ',draw.shape)
 # print('shape 2 = ',img.shape)
