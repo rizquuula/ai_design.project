@@ -16,12 +16,12 @@ def crop1x1_cv2(img_source,img_size):
     img = cv2.resize(img, (new_size[1], new_size[0]))
     if img.shape[1]>=img.shape[0]:
         gap = (img.shape[1]-img.shape[0])//2
-        print(gap)
+        # print(gap)
         new_img = img[0:img.shape[0], gap:img.shape[0]+gap]
         # new_img = img[img.shape[1]:10, img.shape[0]:50]
     else:
         gap = (img.shape[1]-img.shape[0])//2
-        print(gap)
+        # print(gap)
         new_img = img[gap:img.shape[1]+gap, 0:img.shape[1]]
     # delta_h = img_size - new_size[0]
     # delta_w = img_size - new_size[1]
@@ -45,7 +45,7 @@ def crop1x1_cv2(img_source,img_size):
     print(a)
     a.reshape(-1,2,2,2)
     print(a)'''
-    print(new_img.shape[:2])    
+    # print(new_img.shape[:2])    
     # cv2.imshow('This is image',new_img)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
