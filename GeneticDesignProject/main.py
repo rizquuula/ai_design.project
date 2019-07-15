@@ -1,4 +1,3 @@
-
 import cv2 
 import numpy as np 
 from matplotlib import pyplot as plt 
@@ -10,6 +9,7 @@ from Histogram import BGRA_hist, Offset_hist, BW_hist, BGR_hist, Offset_histBGR
 from Algorithm_Text import TextDrawShade
 from Algorithm_BodyText import MakeBodyText
 from Algorithm_BackgroundManipulation import GammaCorrection
+from Algorithm_Sosmed import drawIGaccount
 
 #Open image using OpenCV /  cv2
 img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/example3.jpg",1)
@@ -71,6 +71,7 @@ body_text = MakeBodyText(size=masked_img.size,
                         isBackRect=False,
                         )
 result_img.paste(body_text,(0,0),body_text)
+result_img = drawIGaccount(backgroundImg=result_img,
+                            instaAccount='@ai.design')
 result_img.save('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultImage.jpg')
 result_img.show()
-

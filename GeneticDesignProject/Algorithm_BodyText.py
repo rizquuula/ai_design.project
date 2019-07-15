@@ -60,7 +60,7 @@ def MakeBodyText(size=None, text=None,
         draw.text(((img_size[0]-w)//2, current_h+5), line, font=font, fill=font_color)
         current_h+=h
     # img2.show()
-    draw.text((img_size[1]//8,(img_size[0]-img_size[0]//8)),'Created by AiDesign',fill='white',font=subs_font)
+    draw.text((img_size[0]-130,(img_size[1]-20)),'Created by AiDesign',fill='white',font=subs_font)
     '''
     current_h = img_size[0]//2
     for line in wrapped:
