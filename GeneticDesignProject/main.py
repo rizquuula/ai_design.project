@@ -12,9 +12,9 @@ from Algorithm_BackgroundManipulation import GammaCorrection
 from Algorithm_Sosmed import drawIGaccount
 
 #Open image using OpenCV /  cv2
-img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/example3.jpg",1)
+img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/horizon.png")
 original_img = img #Save original image on a fix variable
-img = GammaCorrection(image=img,gamma=3)
+img = GammaCorrection(image=img,gamma=2)
 img_size = 600
 img = crop1x1_cv2(img,img_size)  #Crop the image in square dimension
 #Save it to a file from cv2
@@ -31,7 +31,7 @@ img_crop = Image.open("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image
 FONT_PATH = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf'   #Open custom font
 FONT_SIZE = 40     #Set font size
 font = ImageFont.truetype(FONT_PATH,FONT_SIZE,0,"unic",None)  #Generate font
-TITLE_TEXT = "Masih Main Aman?"       #Input title text
+TITLE_TEXT = "Tentang Masa..."       #Input title text
 textsize = font.getsize(TITLE_TEXT)   #Getting the width and height of the text
 # print('Text size = ',textsize)  #Checking
 PLACE_X = (img_width-textsize[0])//2
@@ -58,7 +58,7 @@ masked_img.save('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/R
 # img = np.array(masked_img)
 result_img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultTitleImage.jpg')
 #Make body text
-typedBodyText = 'Semua hal memiliki resikonya masing-masing. Dan resiko terbesar akan didapat bila tidak mengambil resiko apapun. Berada di zona nyaman adalah kesalahan terbesar.'
+typedBodyText = 'Mungkin hari ini kamu bersusah payah, semoga, nanti, susah payah tersebut, jadi hobi barumu.. hahahaaaaa.. #@%!^&?'
 BodyFont = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf'
 body_text = MakeBodyText(size=masked_img.size,
                         text=typedBodyText,
@@ -72,6 +72,6 @@ body_text = MakeBodyText(size=masked_img.size,
                         )
 result_img.paste(body_text,(0,0),body_text)
 result_img = drawIGaccount(backgroundImg=result_img,
-                            instaAccount='@ai.design')
+                            instaAccount='@KatasiKecil')
 result_img.save('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultImage.jpg')
 result_img.show()
