@@ -1,0 +1,36 @@
+<VirtualHost *:80>
+
+    ServerName 34.66.137.84
+    ErrorLog ${APACHE_LOG_DIR}/ARTIF_project-error.log
+    CustomLog ${APACHE_LOG_DIR}/ARTIF_project-access.log combined
+
+    WSGIDaemonProcess ARTIF_project processes=10 threads=100 python-path=/var/www/ARTIF_project/
+    WSGIProcessGroup ARTIF_project
+
+    WSGIScriptAlias / /var/www/ARTIF_project/ARTIF_project/wsgi.py
+    DocumentRoot /var/www/ARTIF_project/
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+
+    <Directory /var/www/ARTIF_project/>
+    	Options Indexes FollowSymLinks MultiViews
+    	AllowOverride None
+    	Order allow,deny
+    	allow from all
+    </Directory>
+
+    <Directory /var/www/ARTIF_project/ARTIF_project>
+        <Files wsgi.py>
+            Require all granted
+	</Files>
+    </Directory>
+
+    Alias /static/ /var/www/ARTIF_project/main/
+    <Directory /var/www/ARTIF_project/main/>
+        Require all granted
+    </Directory>
+
+</VirtualHost>
+
