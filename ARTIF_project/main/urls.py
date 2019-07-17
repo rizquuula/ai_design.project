@@ -19,5 +19,8 @@ from . import views
 
 urlpatterns = [
     path ("", views.homepage,name="Homepage"),
+    path ("login", views.loginPage,name="Login"),
+    path ("apps", views.appsPage,name="Aplikasi Desain Instan"),
+    path ("register", views.registerPage,name="Register"),
 #     path('admin/', admin.site.urls),
 ]

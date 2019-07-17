@@ -72,6 +72,6 @@ body_text = MakeBodyText(size=masked_img.size,
                         )
 result_img.paste(body_text,(0,0),body_text)
 result_img = drawIGaccount(backgroundImg=result_img,
-                            instaAccount='@KatasiKecil')
+                            instaAccount='@AiDesain')
 result_img.save('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultImage.jpg')
 result_img.show()

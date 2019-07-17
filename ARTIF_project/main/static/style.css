@@ -13,56 +13,78 @@ body
     top: 0;
     z-index: 10;
 }
+
+.text-center{
+    margin-top: 20%;
+    margin-bottom: 1%;
+}
+
+.navbar-nav li a
+{
+    float: right;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
 .navbar
 {
-    background-image: linear-gradient(to right,#311B92,#00BCD4);
+   background-color: white;
 }
 
 .navbar li a
 {
-          color: white !important; 
+          color: #9E9E9E !important; 
           font-family: Roboto;
 }
 
 .navbar li a:focus
 {
-          color:#90CAF9 !important; 
+          color:#303F9F !important; 
           font-family: Roboto;
 }
 
 .navbar li a:hover
 {
-          color: #BBDEFB !important; 
+          color: #303F9F !important; 
           font-family: Roboto;
 }
 
-.row button
+.btn-mulai 
 {
-    margin-right: 3px;
     margin-left: 3px;
-    color: white;
+    margin-right: 3px;
+    font-size: 16;
+    padding: 10px 20px 10px 20px;
+    border: 2px solid#303F9F;
+    color:white !important;
+    background: #303F9F;
+    border-radius: 4px;
+    text-decoration: none !important;
+    transition: all 0.6s;
+}
+.btn-mulai:hover
+{
+    color: #303F9F !important;
+    background: white;
+    border: 2px solid#303F9F;
+    transition: all 0.6s;
 }
 
-.row button:hover
-{
-    margin-right: 3px;
-    margin-left: 3px;
-    color:#00BCD4;
-}
 
 .navbar-brand
 {
-    color: white !important;
+    color: #303F9F !important;
     font-family: Helvetica;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: 600;
 }
 
 .fa-bars
 {
-    color: white;
+    color: #303F9F;
     font-size: 30px !important ;
 }
-
+    
 .navbar-toggler
 {
     outline: none !important ;
@@ -72,8 +94,8 @@ body
 
 #banner
 {
-    background-image: linear-gradient(to right,#311B92,#00BCD4);
-    color: white;
+    background-color: white;
+    color: #000000;
     padding-top: 5%;
 }
 
@@ -82,10 +104,45 @@ body
     font-size: 35px;
     font-weight: 600;
     margin-top: 5%;
+    margin-bottom: 3%;
 }
 
 .img-fluid
 {
+    width: 95%;
+}
+
+.bottom-img
+{
     width: 100%;
+}
+
+.btn-coba
+{
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 3%;
+    font-size: 16;
+    padding: 10px 20px 10px 20px;
+    color:white !important;
+    background: #673AB7;
+    border-radius: 4px;
+    border: 2px solid#673AB7;
+    text-decoration: none !important;
+    transition: all 0.6s;
+}
+.btn-coba:hover
+{
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 3%;
+    font-size: 16;
+    padding: 10px 20px 10px 20px;
+    color: #673AB7 !important;
+    background:none;
+    border: 2px solid#673AB7;
+    border-radius: 4px;
+    text-decoration: none !important;
+    transition: all 0.6s;
 }
 

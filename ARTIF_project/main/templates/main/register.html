@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{% static 'asset/logo.png'%}" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'loginstyle.css'%}">
+<!-- Material Design Bootstrap -->
+<link href="{% static 'css/mdb.min.css'%}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'animate.min.css'%}">
+<title>aidesign.id | Solusi simple desain grafis buat kamu</title>
+</head>
+<body>
+    <section id="form-login">
+            <div class="row">
+                    <div class="col-md-6 text-center mx-auto my-auto">
+                            <div class="login-form text-center mx-auto">
+                                    <form action="login" class="needs-validation" novalidate>
+                                        <h2 class="text-center">Register</h2>   
+                                        <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="masukkan username" required="required">
+                                                <div class="valid-feedback">valid.</div>
+                                                <div class="invalid-feedback">username tidak valid.</div>
+                                            </div>    
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="masukkan email" required="required">
+                                            <div class="valid-feedback">valid.</div>
+                                            <div class="invalid-feedback">email tidak valid.</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="masukkan password" required="required">
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">password tidak valid.</div>
+                                        </div>
+                                        <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="masukkan konfirmasi password" required="required">
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">password tidak valid.</div>
+                                            </div>
+                                            <div class="text-center">
+                                                    <button class="btn btn-deep-purple btn-block">Daftar</button>
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" class="lupa-password">Lupa Password?</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <a href="apps" class="lupa-password">Masuk sebagai Tamu</a>
+                                                </div>
+                                        </div>  
+                                        <p class="text-center">Sudah punya akun? <a href="login" class="register-link">Masuk</a></p>
+                                    </form>
+                                </div>
+                    </div>
+                    <div class="col-md-6 text-center my-auto mx-auto">
+                        <br>
+                                <div class="animated fadeIn slow">
+                                    <a href="/"><img src="{% static 'asset/artbanner.svg'%}" class="img-login" alt="desainer"></a>
+                    </div>
+                  </div> 
+            </div>
+    </section>
+<!-- <P class="text-center">Copyright 2019 aidesign by aidesign.id | All Rights Reserved </P> -->
+<!-- script validate -->
+<script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+        </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font-family: sans-serif;
+}
+#nav-bar  
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar
+{
+    background-image: linear-gradient(to right,#311B92,#00BCD4);
+}
+
+.navbar li a
+{
+          color: white !important; 
+          font-family: Roboto;
+}
+
+.navbar li a:focus
+{
+          color:#90CAF9 !important; 
+          font-family: Roboto;
+}
+
+.navbar li a:hover
+{
+          color: #BBDEFB !important; 
+          font-family: Roboto;
+}
+
+.row button
+{
+    margin-right: 3px;
+    margin-left: 3px;
+    color: white;
+}
+
+.row button:hover
+{
+    margin-right: 3px;
+    margin-left: 3px;
+    color:#00BCD4;
+}
+
+.navbar-brand
+{
+    color: white !important;
+    font-family: Helvetica;
+    font-size: 20px;
+}
+
+.fa-bars
+{
+    color: white;
+    font-size: 30px !important ;
+}
+
+.navbar-toggler
+{
+    outline: none !important ;
+}
+
+/* Banner Style */
+
+#banner
+{
+    background-image: linear-gradient(to right,#311B92,#00BCD4);
+    color: white;
+    padding-top: 5%;
+}
+
+.banner-title
+{
+    font-size: 35px;
+    font-weight: 600;
+    margin-top: 5%;
+}
+
+.img-fluid
+{
+    width: 100%;
+}
+

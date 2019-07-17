@@ -1,0 +1,29 @@
+.login-form {
+    width: 400px;
+	margin: 50px left;
+}
+.login-form form {
+	margin-bottom: 15px;
+	padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .btn {
+	min-height: 38px;
+	border-radius: 2px;
+}
+.lupa-password , .lupa-password:hover{
+	color: #673AB7;
+}
+.register-link , .register-link:hover{
+	color: #673AB7;
+}
+
+.img-login{
+    width: 80%;
+    margin-bottom: 5%;
+    /* margin-top: 10%;
+    margin-right: 10%;
+    margin-left: 10%; */
+}
