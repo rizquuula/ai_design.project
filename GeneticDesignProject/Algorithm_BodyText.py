@@ -19,20 +19,22 @@ def MakeBodyText(size=None, text=None,
     # FONT_PATH = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/IndieFlower.ttf'   #Open custom font
     # FONT_SIZE = 20     #Set font size
     font = ImageFont.truetype(FONT_PATH,FONT_SIZE)  #Generate font
-    subs_font = ImageFont.truetype(FONT_PATH,FONT_SIZE//2)
     text_size = font.getsize(text)
     print('text size = ',text_size)
     
     wrapped = textwrap.wrap(text,width=wrap_width)
     
-    lenWrapped = []
+    widthBox = []
     for text in wrapped:
-        lenWrapped.append(len(text))
-    longestStr = wrapped[np.argmax(lenWrapped)]
-    print(longestStr)
-    widthLongestStr = font.getsize(longestStr)
-    print(widthLongestStr)
-    img = Image.new("RGBA", (widthLongestStr[0],text_size[1]*len(wrapped)), 0)
+        # lenWrapped.append(len(text))
+        print(text)
+        widthText = font.getsize(text)
+        widthBox.append(widthText)
+    # longestStr = wrapped[np.argmax(lenWrapped)]
+    # print(longestStr)
+    widthLongestStr = np.max(widthBox)
+    print('widthLongestStr = ', widthLongestStr)
+    img = Image.new("RGBA", (widthLongestStr,text_size[1]*len(wrapped)), 0)
     draw = ImageDraw.Draw(img,'RGBA')
     img_size = img.size
     print('img size = ',img_size)
@@ -88,6 +90,7 @@ def MakeBodyText(size=None, text=None,
     # print(draw.getsize)
 
     # img.show()
+    
     return img, counter 
     # cv2.waitKey(0)
 

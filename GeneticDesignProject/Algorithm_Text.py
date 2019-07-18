@@ -21,6 +21,7 @@ def TextDrawShade(size=None, font=None,
 def drawTitle(fontPath = None,
                 fontSize = None,
                 text = None,
+                blurRad = 10
                 ):
     # fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf'   #Open custom font
     # fontSize = 400     #Set font size
@@ -35,8 +36,8 @@ def drawTitle(fontPath = None,
                 text=text,
                 placex=0,
                 placey=0,
-                fill=(0,0,0,200),
-                radius=10    
+                fill=(0,0,0,255),
+                radius=blurRad    
                 )
     canvas.paste(mask_img, (0,0), mask=None)
     draw = ImageDraw.Draw(canvas)
