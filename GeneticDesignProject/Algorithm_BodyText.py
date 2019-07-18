@@ -11,7 +11,8 @@ def MakeBodyText(size=None, text=None,
                     isBackRect=False,
                     blurRectRadius=15,
                     ):
-    img = Image.new("RGBA", size, color=(0,0,0,0))
+    # img = Image.new("RGBA", size, 0)
+    
     # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/crop1x1_cv2.jpg')
     # original_img = img 
     # text = 'Bukanlah kesabaran jika masih mempunyai batas dan bukanlah keikhlasan jika masih merasakan sakit.'
@@ -20,13 +21,22 @@ def MakeBodyText(size=None, text=None,
     font = ImageFont.truetype(FONT_PATH,FONT_SIZE)  #Generate font
     subs_font = ImageFont.truetype(FONT_PATH,FONT_SIZE//2)
     text_size = font.getsize(text)
-    img_size = img.size
     print('text size = ',text_size)
-    print('img size = ',img_size)
+    
     wrapped = textwrap.wrap(text,width=wrap_width)
-
+    
+    lenWrapped = []
+    for text in wrapped:
+        lenWrapped.append(len(text))
+    longestStr = wrapped[np.argmax(lenWrapped)]
+    print(longestStr)
+    widthLongestStr = font.getsize(longestStr)
+    print(widthLongestStr)
+    img = Image.new("RGBA", (widthLongestStr[0],text_size[1]*len(wrapped)), 0)
     draw = ImageDraw.Draw(img,'RGBA')
-    current_h= img_size[0]//3
+    img_size = img.size
+    print('img size = ',img_size)
+    current_h= 0# img_size[0]//3
     if isBackRect == True:
         rect = Image.new("RGBA", img.size, color=0)
         drawRect = ImageDraw.Draw(rect)
@@ -52,15 +62,18 @@ def MakeBodyText(size=None, text=None,
     elif isBackRect==False:
         pass
     # draw = ImageDraw.Draw(result,'RGBA')
+    counter = 0
     for line in wrapped:
         w, h = draw.textsize(line,font=font)
         # print('w,h = ',w,'and ',h)
         # print('line ', line)
         # draw.rectangle((((img_size[0]-w)//2, current_h), (w,h)), fill='white')
-        draw.text(((img_size[0]-w)//2, current_h+5), line, font=font, fill=font_color)
+        draw.text(((img_size[0]-w)//2, current_h), line, font=font, fill=font_color)
         current_h+=h
+        counter+=1
     # img2.show()
-    draw.text((img_size[0]-130,(img_size[1]-20)),'Created by AiDesign',fill='white',font=subs_font)
+    print('current_h = ',current_h)
+    # draw.text((img_size[0]-130,(img_size[1]*14//15)),'Created by AiDesign',fill='white',font=subs_font)
     '''
     current_h = img_size[0]//2
     for line in wrapped:
@@ -75,7 +88,7 @@ def MakeBodyText(size=None, text=None,
     # print(draw.getsize)
 
     # img.show()
-    return img 
+    return img, counter 
     # cv2.waitKey(0)
 
 # MakeBodyText(size=(600,600), 
