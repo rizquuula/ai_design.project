@@ -1,6 +1,8 @@
 from matplotlib import pyplot as plt
 import cv2 
 import numpy as np 
+from Algorithm_Crop1x1 import crop1x1_cv2
+from Algorithm_BackgroundManipulation import GammaCorrection
 
 def returntest(number):     
     #Just checking the return function
@@ -13,16 +15,25 @@ def BW_hist(img_source):
     # Histogram black white
     plt.hist(img_source.ravel(),256,[0,256])
     histr = cv2.calcHist([img_source], [0], None, [256], [0,256]) #Channel set to 0 for Grayscale image
-    print(np.argmax(histr), 
-            histr[np.argmax(histr)])
-    print(np.argmin(histr),
-            histr[np.argmin(histr)])
+    
+    dark = np.average(histr[:127])
+    light = np.average(histr[127:])
+    ave = np.average(histr)
+    gamma = ((ave+light)/ave)+0.5
+
+    print('dark = ', dark)
+    print('light = ', light)
+    print('ave = ', ave)
+    print('gamma = ', gamma)
+    # print(np.argmax(histr), histr[np.argmax(histr)])
+    # print(np.argmin(histr), histr[np.argmin(histr)])
     # print(np.max(histr),
     #         histr[np.max(histr)])
     # print(np.min(histr),
     #         histr[np.min(histr)])
     # print(np.average(histr))
     print()
+    # return gamma
     plt.show()
 
 def BGRA_hist(img_source):
@@ -87,3 +98,22 @@ def Offset_hist(BGRA):
         a=255
     return b,g,r,a 
 
+# img1 = cv2.imread('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Dawn/fxDfE91.jpg')
+# img1 = crop1x1_cv2(img1, 600)
+# num1 = BW_hist(img1)
+# # print(num1)
+# cv2.imshow('result', GammaCorrection(image=img1, gamma=num1))
+
+# # img2 = cv2.imread('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-43.jpg')
+# # img2 = crop1x1_cv2(img2, 600)
+# # num2 = BW_hist(img2)
+# # # print(num1)
+# # cv2.imshow('result2', GammaCorrection(image=img2, gamma=num2))
+
+# # img3 = cv2.imread('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-44.jpg')
+# # img3 = crop1x1_cv2(img3, 600)
+# # num3 = BW_hist(img3)
+# # # print(num1)
+# # cv2.imshow('result3', GammaCorrection(image=img3, gamma=num3))
+
+# cv2.waitKey(0)

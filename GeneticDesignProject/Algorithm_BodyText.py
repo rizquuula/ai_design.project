@@ -58,7 +58,7 @@ def MakeBodyText(size=None, text=None,
                         fill=rect_fill)
 
         rect_result = rect.filter(ImageFilter.GaussianBlur(radius=blurRectRadius))
-        print(rect_result.size,original_img.size)
+        # print(rect_result.size,original_img.size)
         img.paste(rect_result,(0,0),rect_result)
     
     elif isBackRect==False:

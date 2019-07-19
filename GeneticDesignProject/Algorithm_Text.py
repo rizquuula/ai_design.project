@@ -1,27 +1,44 @@
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 
-def TextDrawShade(size=None, font=None, 
+def TextDrawShade(size=None, font=None, image=None,
                 text=None, placex=None, placey=None, 
-                fill=None, radius=None):
-    # img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/example2.jpg",1)
-    img_pil = Image.new("RGBA", size,color=0)#fromarray(img)
-    draw = ImageDraw.Draw(img_pil)
-    textsize = font.getsize(text)   #Getting the width of the text
-    # print('Text size = ',textsize)
-    margin = 1
-    draw.text((placex+margin,placey+margin), text, font = font, fill = fill)
-    draw.text((placex+margin,placey-margin), text, font = font, fill = fill)
-    draw.text((placex-margin,placey+margin), text, font = font, fill = fill)
-    draw.text((placex-margin,placey-margin), text, font = font, fill = fill)
-    draw.text((placex,placey), text, font = font, fill =fill) 
-    
-    result = img_pil.filter(ImageFilter.GaussianBlur(radius=radius))
-    return result
+                fill=None, radius=None, margin=5):
+    if image==None:
+        # img = cv2.imread("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/example2.jpg",1)
+        img_pil = Image.new("RGBA", size,color=0)#fromarray(img)
+        draw = ImageDraw.Draw(img_pil)
+        textsize = font.getsize(text)   #Getting the width of the text
+        # print('Text size = ',textsize)
+        # margin = 1
+        draw.text((placex+margin,placey+margin), text, font = font, fill = fill)
+        draw.text((placex+margin,placey-margin), text, font = font, fill = fill)
+        draw.text((placex-margin,placey+margin), text, font = font, fill = fill)
+        draw.text((placex-margin,placey-margin), text, font = font, fill = fill)
+        draw.text((placex,placey), text, font = font, fill =fill) 
+        
+        result = img_pil.filter(ImageFilter.GaussianBlur(radius=radius))
+        return result
+    else:
+        # margin = margin 
+        imageSize = image.size[0]+(2*margin), image.size[1]+(2*margin)
+
+        img = Image.new('RGBA', imageSize, 0)
+        mask = Image.new('L', imageSize, color='black')
+        img.paste(image, (0,margin), image)
+        img.paste(image, (margin,0), image)
+        img.paste(image, (2*margin,margin), image)
+        img.paste(image, (margin,2*margin), image)
+        img = Image.composite(mask, img, img)
+        # img.show()
+        result = img.filter(ImageFilter.GaussianBlur(radius=radius))
+        result.paste(image,(margin,margin), image)
+        return result
 
 def drawTitle(fontPath = None,
                 fontSize = None,
                 text = None,
-                blurRad = 10
+                blurRad = 10,
+                shadowColor = (0,0,0,255),
                 ):
     # fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf'   #Open custom font
     # fontSize = 400     #Set font size
@@ -36,7 +53,7 @@ def drawTitle(fontPath = None,
                 text=text,
                 placex=0,
                 placey=0,
-                fill=(0,0,0,255),
+                fill=shadowColor,
                 radius=blurRad    
                 )
     canvas.paste(mask_img, (0,0), mask=None)

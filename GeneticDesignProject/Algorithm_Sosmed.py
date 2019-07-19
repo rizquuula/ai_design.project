@@ -28,6 +28,7 @@ def drawIGaccount(logo=logoIGPath,
     else:
         openImg = backgroundImg
 
+    #Create the logo 
     OverlayColor = Image.new('L',logoIG.size,'white')
     logoIG_white = Image.composite(OverlayColor, logoIG, logoIG)
 
@@ -37,10 +38,10 @@ def drawIGaccount(logo=logoIGPath,
     # print(textsize) 
     # print(logoIG.size) 
 
-    ratio = logoIG.size[1]/textsize[1] #Ratio
+    ratio = (logoIG.size[1]*3/4)/textsize[1] #Ratio
     newTextSize = int(textsize[0]*ratio), int(textsize[1]*ratio)
 
-    newFrameSize = newTextSize[0], logoIG.size[0]*2
+    newFrameSize = newTextSize[0], int(logoIG.size[0]+newTextSize[1]*3/2)
     # print(ratio)
 
     textArea = Image.new('L',textsize,color=0)
@@ -52,7 +53,7 @@ def drawIGaccount(logo=logoIGPath,
 
     newFrame = Image.new('L',newFrameSize,color=0)
     newFrame.paste(logoIG_white, (newFrameSize[0]//2-logoIG_white.size[0]//2, 0), logoIG_white)
-    newFrame.paste(textArea, (0, textArea.size[1]), textArea)
+    newFrame.paste(textArea, (0, int(newTextSize[1]*3/2)), textArea)
 
     targetHeight = openImg.size[1]//15
     ratioOpenImg = targetHeight/newFrame.size[1]
