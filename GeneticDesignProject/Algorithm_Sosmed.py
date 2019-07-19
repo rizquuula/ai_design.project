@@ -182,3 +182,35 @@ drawAnotherSosmed(account_IG = '@rzf.gsh',
                     account_TWITTER = '@linkgish',
                     account_YOUTUBE = None
                     )'''
+
+def drawHashtag(hashTag = 'innovation center',
+                fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-RegularItalic.ttf',
+                fontTagPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BoldItalic.ttf',
+                fontSize = 200,
+                fontTagSize = 100,
+                ):
+    hashTag = hashTag.upper()
+    eachHashTag = hashTag.split(' ')
+    print(eachHashTag)
+
+    # Draw the # sign first
+    sign = '#'
+    fontSign = ImageFont.truetype(fontPath,fontSize)  
+    signSize = fontSign.getsize(sign) 
+    canvasHash = Image.new('RGBA', signSize)
+    drawSign = ImageDraw.Draw(canvasHash)
+    drawSign.text((0,0), sign, font=fontSign, fill=(255,255,255,255))
+    canvasHash.show()
+
+    # Draw the text 
+    fontTag = ImageFont.truetype(fontTagPath,fontTagSize)  
+    for name in eachHashTag:
+        tagSize = fontTag.getsize(name)
+        tagSize = tagSize[0], tagSize[1]
+        canvasTag = Image.new('RGBA', tagSize, 0)
+        drawTag = ImageDraw.Draw(canvasTag)
+        drawTag.text((0,0), name, font=fontTag, fill=(255,255,255,255))
+        canvasTag.show()    # Show each tag 
+
+
+drawHashtag()

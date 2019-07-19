@@ -15,13 +15,13 @@ from Algorithm_backgroundSelection import backgroundSelection
 #Open image using OpenCV /  cv2
 # img = cv2.imread("/Image-lib/3.jpg")
 
-img = backgroundSelection(category='Dawn').convert('RGB')
+img = backgroundSelection(category='City').convert('RGB')
 img = np.array(img)
 img = img[:, :, ::-1].copy() 
 gammaIs = whatsGamma(img)
 img = GammaCorrection(image=img,
                         gamma=gammaIs)
-img_size = 500
+img_size = 2000
 img = crop1x1_cv2(img,img_size)  #Crop the image in square dimension
 #Save it to a file from cv2
 #So it can be edited by PIL soon
@@ -33,7 +33,7 @@ masked_img = Image.fromarray(masked_img)
 #square image so..
 # img_width, img_height = img_size, img_size
 #Open cropped image using PIL
-TITLE_TEXT = 'Especially For Me,'
+TITLE_TEXT = "Don't Ever GIVE UP!"
 # masked_img = Image.open("/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/crop1x1_cv2.jpg")
 
 drawTitle = drawTitle(fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Kaushan_Script/KaushanScript-Regular.ttf',
@@ -54,7 +54,7 @@ masked_img.paste(drawTitle,((masked_img.size[0]-drawTitle.size[0])//2, masked_im
 # img = np.array(masked_img)
 result_img = masked_img#Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultTitleImage.jpg')
 #Make body text
-typedBodyText = "“Bukanlah kesabaran jika masih mempunyai batas, dan bukanlah keiklasan jika masih merasakan sakit”"
+typedBodyText = "“Pernah ngga, sudah berusaha keras, mencoba mengejar suatu hal, meski sekuat tenaga tapi belum memperolehnya? Jangan berbalik! Kesuksesan itu menunggumu pantas untuk mendapatkannya.”"
 BodyFont = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Marck_Script/MarckScript-Regular.ttf'
 body_text = MakeBodyText(size=(2000,2000),
                         text=typedBodyText,
