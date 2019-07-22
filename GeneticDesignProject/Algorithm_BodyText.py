@@ -2,6 +2,7 @@ import cv2
 import numpy as np 
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import textwrap
+from AlgorithmcolorMaterial import random2MaterialColor
 
 def MakeBodyText(size=None, text=None, 
                     FONT_PATH=None, FONT_SIZE=None, 
@@ -106,3 +107,52 @@ def MakeBodyText(size=None, text=None,
 #                     isBackRect=False,
 #                     blurRectRadius=15,
 #                     ).show()
+
+fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BlackItalic.ttf'   #Open custom font
+def drawBodyText(image = None,
+            fontPath = fontPath, 
+            fontSize = 20,
+            text = 'Ketika kamu mulai memahami suatu hal. Teruslah memahami hingga kau paham bahwa dirimu sama sekali belum paham hal tersebut.',
+            wrapWidth = 30
+            ):
+    font = ImageFont.truetype(fontPath, fontSize)
+    textSize = font.getsize(text)
+
+    wrapped = textwrap.wrap(text,width=wrapWidth)
+    print('Wrapped result : ', wrapped)
+    
+    widthBox = []
+    heightBox = []
+    for texts in wrapped:
+        print(texts)
+        sizeText = font.getsize(texts)
+        widthBox.append(sizeText[0])
+        heightBox.append(sizeText[1])
+    # print('widthBox : ',widthBox)
+    textMaxWidth = np.max(widthBox)
+    textMaxHeight = np.max(heightBox)
+    
+    textFieldsize = textMaxWidth, np.sum(heightBox)
+    textField = Image.new('RGBA', textFieldsize, 0)
+    draw = ImageDraw.Draw(textField, 'RGBA')
+    startX = 0
+    startY = 0
+    for texts in wrapped:
+        words = texts.split(' ')
+        # print(words)
+        for word in words:
+            print('word : ', word)
+            word = str(word+' ')
+            randomColor = random2MaterialColor()[0]
+            draw.text((startX,startY), word , fill= randomColor, font= font)
+            print('draw text pass')
+            startX+= (font.getsize(word))[0]
+        startY+=(font.getsize(texts))[1]
+        startX = 0
+    
+    # textField.show()
+    
+    image.paste(textField,(image.size[0], imae.size[1]),textField)
+
+
+drawBodyText()

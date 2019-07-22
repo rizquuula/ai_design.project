@@ -17,7 +17,7 @@ amber = (255, 202, 40)
 orange = (255, 167, 38)
 deep_orange = (255, 112, 67)
 brown = (141, 110, 99)
-grey = (189, 189, 189)
+grey = (255,255,255)#(189, 189, 189)
 blue_grey = (120, 144, 156)
 
 # Function to ram=ndomize the color from database
