@@ -5,12 +5,14 @@ def drawTitleStyle2(imageSource = None,
                     bigText = "LinkGish",
                     littleText = "Innovation Center",
                     bigTextColor = (0,0,0,255),
-                    littleTextColor = (255,255,255,255)
+                    littleTextColor = (255,255,255,255),
+                    bigFontSize = 1300,
+                    littleTextSize = 600,
                         ):
     img = imageSource
     #Draw big text in title
     fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Tulpen_One/TulpenOne-Regular.ttf'   #Open custom font
-    fontSize = 1600     #Set font size
+    fontSize = bigFontSize     #Set font size
     font = ImageFont.truetype(fontPath,fontSize,0,"unic",None)  #Generate font
     titleText = bigText
     titleText = titleText.upper()     #Input title text
@@ -24,11 +26,11 @@ def drawTitleStyle2(imageSource = None,
     #Draw a sub text below the big title
     # subFontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Marck_Script/MarckScript-Regular.ttf'   #Open custom font
     subFontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Great_Vibes/GreatVibes-Regular.ttf'   #Open custom font
-    subFontSize = 400
+    subFontSize = littleTextSize
     subFont = ImageFont.truetype(subFontPath, subFontSize)
     subText = littleText
     subTextSize = subFont.getsize(subText)
-
+    
     #MAking sub title 
     subCanvas = Image.new('RGBA', (subTextSize[0]+100, subTextSize[1]), 0)
     drawSubs = ImageDraw.Draw(subCanvas)
@@ -52,11 +54,20 @@ def drawTitleStyle2(imageSource = None,
 
     # Change the size 
     ratio = (img.size[1]/4)/fullCanvasSize[1]
+    print('Ratio = ',ratio)
     CWidth = int(ratio*(canvas.size[0]-300))
     outputSize = int(ratio*fullCanvasSize[0]), int(ratio*fullCanvasSize[1])
     fullCanvas = fullCanvas.resize(outputSize ,Image.ANTIALIAS)
+    print('Full title text size = ', fullCanvas.size)
     # fullCanvas.show()
-    print(fullCanvas.size)
+    if (fullCanvas.size[0]>(img.size[0]*2/3)):
+        W_ratio = (img.size[0]*0.6) / fullCanvas.size[0]
+        CWidth = CWidth*W_ratio
+        print('W ratio', W_ratio)
+        newSize = int(W_ratio*fullCanvas.size[0]), int(W_ratio*fullCanvas.size[1])
+        fullCanvas = fullCanvas.resize(newSize ,Image.ANTIALIAS)
+
+    print('Full title text size = ', fullCanvas.size)
     
     img.paste(fullCanvas, (int((img.size[0]-CWidth)/2), img.size[1]//4), fullCanvas)
     return img

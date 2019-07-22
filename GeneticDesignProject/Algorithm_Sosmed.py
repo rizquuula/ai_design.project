@@ -1,5 +1,6 @@
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import cv2 
+import numpy as np
 
 logoIGPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-instagram.png'
 backgroundPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/crop1x1_cv2.jpg'
@@ -15,7 +16,7 @@ pathLogo_TWITTER = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-li
 pathLogo_YOUTUBE = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-youtube.png'
 
 def drawIGaccount(logo=logoIGPath,
-                    backgroundPath=backgroundPath,
+                    backgroundPath=None,
                     backgroundImg=None,
                     fontPath=fontPath,
                     fontSize=fontSize,
@@ -23,13 +24,15 @@ def drawIGaccount(logo=logoIGPath,
                     ):
 
     logoIG = Image.open(logo)
-    if backgroundImg==None:
-        openImg = Image.open(background)
-    else:
+    if backgroundImg!=None:
         openImg = backgroundImg
+    elif backgroundPath!=None:
+        openImg = Image.open(None)
+    else:
+        pass 
 
     #Create the logo 
-    OverlayColor = Image.new('L',logoIG.size,'white')
+    OverlayColor = Image.new('RGBA',logoIG.size,'white')
     logoIG_white = Image.composite(OverlayColor, logoIG, logoIG)
 
     font = ImageFont.truetype(fontPath,fontSize,0,"unic",None)  #Generate font
@@ -44,16 +47,20 @@ def drawIGaccount(logo=logoIGPath,
     newFrameSize = newTextSize[0], int(logoIG.size[0]+newTextSize[1]*3/2)
     # print(ratio)
 
-    textArea = Image.new('L',textsize,color=0)
+    textArea = Image.new('RGBA',textsize,color=0)
     drawText = ImageDraw.Draw(textArea)
     drawText.text((0,0), instaAccount, font = font, fill = 'white')
     # textArea.show()
     textArea = textArea.resize((newTextSize), Image.ANTIALIAS)
     # print(textArea.size)
 
-    newFrame = Image.new('L',newFrameSize,color=0)
+    newFrame = Image.new('RGBA',newFrameSize,color=0)
     newFrame.paste(logoIG_white, (newFrameSize[0]//2-logoIG_white.size[0]//2, 0), logoIG_white)
     newFrame.paste(textArea, (0, int(newTextSize[1]*3/2)), textArea)
+    print('logo Instagram size = ', newFrame.size)
+
+    if (backgroundImg and backgroundPath) == None:
+        return newFrame
 
     targetHeight = openImg.size[1]//15
     ratioOpenImg = targetHeight/newFrame.size[1]
@@ -72,12 +79,12 @@ def drawIGaccount(logo=logoIGPath,
 #example, comment this for using the module
 # drawIGaccount().show()
 
-def drawAnotherSosmed(isTrue=False,
+def drawAnotherSosmed(#isTrue=False,
                         image=None,
                         backgroundPath=backgroundPath,
                         fontPath=fontPath,
                         fontSize=fontSize,
-                        heightFactor = 50,
+                        ratioHeight = 5,
                         account_IG = None ,
                         account_FB = None ,
                         account_WA = None ,
@@ -96,13 +103,13 @@ def drawAnotherSosmed(isTrue=False,
     canvas = Image.new('RGBA',(img.size[0],img.size[1]))
     newCanvas = Image.new('RGBA',(0,0),0)
     # drawOn = ImageDraw.Draw(canvas)
-    logoH = img.size[1]//heightFactor
+    logoH = img.size[1]*ratioHeight//100
     # What logo will be create next? Make a list first
-    listLogoPath = [pathLogo_FB, 
+    listLogoPath = [pathLogo_FB, pathLogo_IG,
                         pathLogo_LINE, pathLogo_TELEGRAM, 
                         pathLogo_TWITTER, pathLogo_WA, 
                         pathLogo_WEB, pathLogo_YOUTUBE]
-    listAccount = [account_FB,
+    listAccount = [account_FB, account_IG,
                     account_LINE, account_TELEGRAM,
                     account_TWITTER, account_WA,
                     account_WEB, account_YOUTUBE]
@@ -183,15 +190,50 @@ drawAnotherSosmed(account_IG = '@rzf.gsh',
                     account_YOUTUBE = None
                     )'''
 
-def drawHashtag(hashTag = 'innovation center',
-                fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-RegularItalic.ttf',
-                fontTagPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BoldItalic.ttf',
-                fontSize = 200,
-                fontTagSize = 100,
+def drawHashtag(image = None,
+                hashTag = 'Artificial intelligence',
+                fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BoldItalic.ttf',
+                fontTagPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BlackItalic.ttf',
+                fontSize = 400,
+                fontTagSize = 400,
+                ratioWidth = 50,
+                ratioHeight = 75,
+                targetHeight = None,
                 ):
     hashTag = hashTag.upper()
     eachHashTag = hashTag.split(' ')
-    print(eachHashTag)
+    # print(eachHashTag)
+
+    # Draw the text first
+    fontTag = ImageFont.truetype(fontTagPath,fontTagSize)  
+    listTag = []
+    listHeight = []
+    nameTagWidth = 1000
+    for name in eachHashTag:
+        tagSize = fontTag.getsize(name)
+        tagSize = tagSize[0], tagSize[1]
+        canvasTag = Image.new('RGBA', tagSize, 0)
+        drawTag = ImageDraw.Draw(canvasTag)
+        drawTag.text((0,0), name, font=fontTag, fill=(255,255,255,255))
+        currentSize = canvasTag.size
+        ratio = nameTagWidth/currentSize[0]
+        newSize = int(ratio*currentSize[0]), int(ratio*currentSize[1])
+        canvasTag = canvasTag.resize(newSize, Image.ANTIALIAS)
+        listTag.append(canvasTag)
+        listHeight.append(newSize[1])
+        # canvasTag.show()    # Show each tag 
+    # print(listTag)
+    # print(listHeight, np.sum(listHeight))
+    
+    pasteWidth = (len(listTag)-1)*20
+    pasteHeight = 0
+    canvasTagFull = Image.new('RGBA', (nameTagWidth+pasteWidth, np.sum(listHeight)), color=0)
+    for tag in listTag:
+        canvasTagFull.paste(tag,(pasteWidth,pasteHeight),tag)
+        pasteWidth-=20
+        pasteHeight+=tag.size[1]
+    # canvasTagFull.show()
+    # print(canvasTagFull.size)
 
     # Draw the # sign first
     sign = '#'
@@ -200,17 +242,37 @@ def drawHashtag(hashTag = 'innovation center',
     canvasHash = Image.new('RGBA', signSize)
     drawSign = ImageDraw.Draw(canvasHash)
     drawSign.text((0,0), sign, font=fontSign, fill=(255,255,255,255))
-    canvasHash.show()
+    #Croping the transparent on top
+    canvasHash = canvasHash.crop((0, signSize[1]/5, signSize[0], signSize[1]) )
+    H_ratio = canvasTagFull.size[1]/canvasHash.size[1]
+    # print(H_ratio,' - ',canvasHash.size[0],' - ', canvasTagFull.size[0])
+    H_Size = int(H_ratio*canvasHash.size[0]), int(H_ratio*canvasHash.size[1])
+    canvasHash = canvasHash.resize(H_Size, Image.ANTIALIAS)
+    # print(canvasHash.size)
+    # canvasHash.show()
 
-    # Draw the text 
-    fontTag = ImageFont.truetype(fontTagPath,fontTagSize)  
-    for name in eachHashTag:
-        tagSize = fontTag.getsize(name)
-        tagSize = tagSize[0], tagSize[1]
-        canvasTag = Image.new('RGBA', tagSize, 0)
-        drawTag = ImageDraw.Draw(canvasTag)
-        drawTag.text((0,0), name, font=fontTag, fill=(255,255,255,255))
-        canvasTag.show()    # Show each tag 
+    #Draw the last paste full size canvas
+    canSize = ((canvasTagFull.size[0]+canvasHash.size[0]) , (canvasTagFull.size[1]))
+    canvasLastPaste = Image.new('RGBA', (canSize), 0)
+    canvasLastPaste.paste(canvasHash,(0,0),canvasHash)
+    canvasLastPaste.paste(canvasTagFull,(canvasHash.size[0],0),canvasTagFull)
+    # canvasLastPaste.show()
+    print('Logo hashtag size = ',canvasLastPaste.size)
+    if image!=None:
+        L_ratio = (image.size[1]/20)/canvasLastPaste.size[1]
+        L_size = int(canvasLastPaste.size[0]*L_ratio), int(canvasLastPaste.size[1]*L_ratio)
+        canvasLastPaste = canvasLastPaste.resize(L_size, Image.ANTIALIAS)
+        placeH, placeW = (image.size[0]-canvasLastPaste.size[0])*ratioWidth//100, image.size[1]*ratioHeight//100
+        image.paste(canvasLastPaste,(placeH, placeW),canvasLastPaste)
+        return image
+    
+    else:
+        if targetHeight != None:
+            TH_ratio = targetHeight/canvasLastPaste.size[1]
+            TH_size = int(TH_ratio*canvasLastPaste.size[0]), int(TH_ratio*canvasLastPaste.size[1])
+            canvasLastPaste = canvasLastPaste.resize(TH_size, Image.ANTIALIAS)
+            return canvasLastPaste
+        else:
+            return canvasLastPaste
+# drawHashtag()
 
-
-drawHashtag()

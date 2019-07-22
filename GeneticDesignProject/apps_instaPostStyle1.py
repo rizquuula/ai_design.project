@@ -120,6 +120,7 @@ print(newSize)
 canvas = canvas.resize(newSize, Image.ANTIALIAS)
 print(canvas)
 result_img.paste(canvas, (img_size*24//30,(img_size*29//30)), canvas )
+
 result_img.save('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/ResultImage.jpg')
 result_img.show()
 # print('Done')
