@@ -15,6 +15,7 @@ pathLogo_WEB = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Lo
 pathLogo_TWITTER = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-twitter.png'
 pathLogo_YOUTUBE = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-youtube.png'
 
+# Function to draw single IG account for large account sign purpose
 def drawIGaccount(logo=logoIGPath,
                     backgroundPath=None,
                     backgroundImg=None,
@@ -23,30 +24,29 @@ def drawIGaccount(logo=logoIGPath,
                     instaAccount='@Rzf.Gsh'
                     ):
 
-    logoIG = Image.open(logo)
+    logoIG = Image.open(logo)   # Open logo IG from a specified database
     if backgroundImg!=None:
-        openImg = backgroundImg
+        openImg = backgroundImg     # Open image PIL format
     elif backgroundPath!=None:
-        openImg = Image.open(None)
+        openImg = Image.open(backgroundPath)    # Open file in a path
     else:
-        pass 
+        pass # What this is for? hha
 
-    #Create the logo 
+    #Create the logo in white color
     OverlayColor = Image.new('RGBA',logoIG.size,'white')
-    logoIG_white = Image.composite(OverlayColor, logoIG, logoIG)
-
+    logoIG_white = Image.composite(OverlayColor, logoIG, logoIG)    # Paste the overlay color
     font = ImageFont.truetype(fontPath,fontSize,0,"unic",None)  #Generate font
-        #Input title text
+    # Input title text
     textsize = font.getsize(instaAccount)   #Getting the width and height of the text
     # print(textsize) 
     # print(logoIG.size) 
-
+    # 
     ratio = (logoIG.size[1]*3/4)/textsize[1] #Ratio
     newTextSize = int(textsize[0]*ratio), int(textsize[1]*ratio)
 
-    newFrameSize = newTextSize[0], int(logoIG.size[0]+newTextSize[1]*3/2)
+    newFrameSize = newTextSize[0], int(logoIG.size[0]+newTextSize[1]*3/2)   # Set the size for paste the text and logo
     # print(ratio)
-
+    # This will create the account text 
     textArea = Image.new('RGBA',textsize,color=0)
     drawText = ImageDraw.Draw(textArea)
     drawText.text((0,0), instaAccount, font = font, fill = 'white')
@@ -59,7 +59,8 @@ def drawIGaccount(logo=logoIGPath,
     newFrame.paste(textArea, (0, int(newTextSize[1]*3/2)), textArea)
     print('logo Instagram size = ', newFrame.size)
 
-    if (backgroundImg and backgroundPath) == None:
+    if (backgroundImg == None) and (backgroundPath == None):
+        print('No or Fail to load backgroundImg and backgroundPath')
         return newFrame
 
     targetHeight = openImg.size[1]//15

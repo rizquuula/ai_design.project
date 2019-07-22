@@ -1,6 +1,7 @@
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 from Algorithm_Text import TextDrawShade
 
+# Draw the main text that constructed by Bid and Little text
 def drawTitleStyle2(imageSource = None,
                     bigText = "LinkGish",
                     littleText = "Innovation Center",
@@ -9,6 +10,7 @@ def drawTitleStyle2(imageSource = None,
                     bigFontSize = 1300,
                     littleTextSize = 600,
                         ):
+    # Aliasing to 'img'
     img = imageSource
     #Draw big text in title
     fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Tulpen_One/TulpenOne-Regular.ttf'   #Open custom font
@@ -17,7 +19,7 @@ def drawTitleStyle2(imageSource = None,
     titleText = bigText
     titleText = titleText.upper()     #Input title text
     textsize = font.getsize(titleText)   #Getting the width and height of the text
-    # Making the big title
+    # Making the big title and add some padding for the little text
     canvas = Image.new('RGBA', (textsize[0]+300, textsize[1]), 0)
     draw = ImageDraw.Draw(canvas)
     draw.text((0,0), titleText, font = font, fill = bigTextColor)
@@ -60,6 +62,8 @@ def drawTitleStyle2(imageSource = None,
     fullCanvas = fullCanvas.resize(outputSize ,Image.ANTIALIAS)
     print('Full title text size = ', fullCanvas.size)
     # fullCanvas.show()
+
+    # If the size is too large, it will forced to fit the maximum size 
     if (fullCanvas.size[0]>(img.size[0]*2/3)):
         W_ratio = (img.size[0]*0.6) / fullCanvas.size[0]
         CWidth = CWidth*W_ratio
@@ -68,7 +72,8 @@ def drawTitleStyle2(imageSource = None,
         fullCanvas = fullCanvas.resize(newSize ,Image.ANTIALIAS)
 
     print('Full title text size = ', fullCanvas.size)
+    # Paste to the background image
+    img.paste(fullCanvas, (int((img.size[0]-CWidth)/2), img.size[1]//4), fullCanvas) 
     
-    img.paste(fullCanvas, (int((img.size[0]-CWidth)/2), img.size[1]//4), fullCanvas)
     return img
 

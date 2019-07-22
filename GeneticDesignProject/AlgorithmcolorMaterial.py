@@ -20,6 +20,7 @@ brown = (141, 110, 99)
 grey = (189, 189, 189)
 blue_grey = (120, 144, 156)
 
+# Function to ram=ndomize the color from database
 def random2MaterialColor():
     listColor = [red, pink, purple, deep_purple, indigo, blue, light_blue, cyan,
                     teal, green, light_green, lime, yellow, amber, orange, deep_orange,
@@ -33,6 +34,7 @@ def random2MaterialColor():
     print(result, ' and ', result2)
     return result, result2
 
+# Function to select color form database by it name
 def selectColor(color=None):
     listColorStr = ['red', 'pink', 'purple', 'deep_purple', 'indigo', 'blue', 'light_blue', 'cyan',
                     'teal', 'green', 'light_green', 'lime', 'yellow', 'amber', 'orange', 'deep_orange',

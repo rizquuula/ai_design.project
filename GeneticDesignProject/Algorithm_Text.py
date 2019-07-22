@@ -36,6 +36,7 @@ def TextDrawShade(size=None, font=None, image=None,
 
 def drawTitle(fontPath = None,
                 fontSize = None,
+                image = None,
                 text = None,
                 blurRad = 10,
                 shadowColor = (0,0,0,255),
@@ -59,14 +60,19 @@ def drawTitle(fontPath = None,
     canvas.paste(mask_img, (0,0), mask=None)
     draw = ImageDraw.Draw(canvas)
     draw.text((0,0), text, font = font, fill = 'white')
+
+    ratio = (image.size[0]/2)/canvas.size[0]
+    canvas = canvas.resize((int(canvas.size[0]*ratio), int(canvas.size[1]*ratio)) ,Image.ANTIALIAS)
     # canvas.show()
-    return canvas
+    image.paste(canvas,((image.size[0]-canvas.size[0])//2, image.size[1]//4),canvas)
+    # canvas.show()
+    return image, canvas
     # mask_img.show()
     # print(overlay_img.size, img_crop.size, mask_img.size) #Checking, all should be same
 
     #Draw the image again for create Title Text
 
-'''drawTitle(fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf',
-    fontSize = 400,
-    text = "Berubah,-",
-    ).show()'''
+# drawTitle(fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf',
+#     fontSize = 400,
+#     text = "Berubah,-",
+#     ).show()

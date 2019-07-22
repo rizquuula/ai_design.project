@@ -2,18 +2,21 @@ import cv2
 import numpy as np 
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 
+# This is algorithm to cropping image in 1x1 dimension with openCV 
 def crop1x1_cv2(img_source,img_size):
     #img_source = str(img_source)
     #img = cv2.imread(img_source)
     img = img_source
+    # Determine the size of image X Y size
     old_size = img.shape[:2]       #Original size
     #print(old_size)     
     # => (288, 352)
-    ratio = float(img_size)/min(old_size)
+    ratio = float(img_size)/min(old_size)   #Ratio determined image size
     new_size = tuple([int(x*ratio) for x in old_size])      #Changed to the new size in same ratio
     #print(ratio,' and ',new_size)      
     # => 0.6363636363636364  and  (183, 224)#
     img = cv2.resize(img, (new_size[1], new_size[0]))
+    # Cropping the image, in it center potition
     if img.shape[1]>=img.shape[0]:
         gap = (img.shape[1]-img.shape[0])//2
         # print(gap)

@@ -10,6 +10,7 @@ def MakeBodyText(size=None, text=None,
                     font_color=(0,0,0,255),
                     isBackRect=False,
                     blurRectRadius=15,
+                    image=None,
                     ):
     # img = Image.new("RGBA", size, 0)
     
