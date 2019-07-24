@@ -2,7 +2,7 @@ import cv2
 import numpy as np 
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import textwrap
-from AlgorithmcolorMaterial import random2MaterialColor
+from Algorithm_colorMaterial import randomMaterialColor
 
 def MakeBodyText(size=None, text=None, 
                     FONT_PATH=None, FONT_SIZE=None, 
@@ -109,11 +109,14 @@ def MakeBodyText(size=None, text=None,
 #                     ).show()
 
 fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BlackItalic.ttf'   #Open custom font
-def drawBodyText(image = None,
+def makeBodyTextNano2(image = None,
             fontPath = fontPath, 
             fontSize = 20,
             text = 'Ketika kamu mulai memahami suatu hal. Teruslah memahami hingga kau paham bahwa dirimu sama sekali belum paham hal tersebut.',
-            wrapWidth = 30
+            wrapWidth = 30,
+            placeRatio = 10,
+            fieldRatio = 70,
+            typeColor = 'light',
             ):
     font = ImageFont.truetype(fontPath, fontSize)
     textSize = font.getsize(text)
@@ -143,16 +146,19 @@ def drawBodyText(image = None,
         for word in words:
             print('word : ', word)
             word = str(word+' ')
-            randomColor = random2MaterialColor()[0]
+            randomColor = randomMaterialColor(typeColor=typeColor)
             draw.text((startX,startY), word , fill= randomColor, font= font)
-            print('draw text pass')
             startX+= (font.getsize(word))[0]
         startY+=(font.getsize(texts))[1]
         startX = 0
-    
+    print('draw text pass')
     # textField.show()
-    
-    image.paste(textField,(image.size[0], imae.size[1]),textField)
+    fieldHRatio = ((fieldRatio/100 )*image.size[1])/textField.size[1]
+    print('fieldRatio = ',fieldHRatio)
+    textField = textField.resize((int(textField.size[0]*fieldHRatio),int(textField.size[1]*fieldHRatio)), Image.ANTIALIAS)
+    # textField.show()
+    placeRatio = placeRatio/100
+    image.paste(textField,(int(image.size[0]*placeRatio), int(image.size[1]*placeRatio)),textField)
+    return image
 
-
-drawBodyText()
+# drawBodyText()

@@ -2,6 +2,7 @@ from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import numpy as np 
 from Algorithm_Sosmed import drawHashtag
 from Algorithm_Sosmed import drawIGaccount
+from Algorithm_colorMaterial import LIGHTorDARK
 # import cv2
 pathLogo_MDC = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-MDC-Fit.png'
 
@@ -49,6 +50,8 @@ def combineLogo(image = None,
                 instagram = None,
                 ratioWidth = 50,
                 ratioHeight = 75,
+                isLight=False,
+                overlayColor= (55,71,79),
                 ):
     
     logoBox = []
@@ -86,16 +89,28 @@ def combineLogo(image = None,
         canvas.paste(logo,(currentPasteWidth, 0),logo)
         currentPasteWidth+=logo.size[0]+targetHeight//2
     # canvas.show()
-
+    
     if image!=None:
-        #Paste code to background
-        # ratio = targetHeight/canvas.size[1]
-        # size = int(canvas.size[0]*ratio), int(canvas.size[1]*ratio)
-        # canvas = canvas.resize(L_size, Image.ANTIALIAS)
-        placeH, placeW = (image.size[0]-canvas.size[0])*ratioWidth//100, image.size[1]*ratioHeight//100
-        image.paste(canvas,(placeH, placeW),canvas)
+        if isLight==True:
+            placeW, placeH = (image.size[0]-canvas.size[0])*ratioWidth//100, image.size[1]*ratioHeight//100
+            autoOverlayColor = LIGHTorDARK(image=image,
+                                    posX=placeW,posY=placeH,
+                                    sizeX=(placeW+canvas.size[0]),sizeY=(placeH+canvas.size[1]))
 
-        return image
+            darkC = Image.new('RGBA',canvas.size,color=autoOverlayColor)
+            canvas = Image.composite(darkC, canvas, canvas)            
+            image.paste(canvas,(placeW, placeH),canvas)
+
+            return image
+        else:
+            #Paste code to background
+            # ratio = targetHeight/canvas.size[1]
+            # size = int(canvas.size[0]*ratio), int(canvas.size[1]*ratio)
+            # canvas = canvas.resize(L_size, Image.ANTIALIAS)
+            placeW, placeH = (image.size[0]-canvas.size[0])*ratioWidth//100, image.size[1]*ratioHeight//100
+            image.paste(canvas,(placeW, placeH),canvas)
+
+            return image
     
     else: 
         return canvas

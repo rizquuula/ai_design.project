@@ -11,6 +11,8 @@ def backgroundSelection(category = None):
     dawnPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Dawn/'
     duskPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Dusk/'
     nightPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Night/'
+    lightPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Light/'
+    darkPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/Dark/'
     listNature = [dawnPath, duskPath, nightPath]    # Just a multi category for Nature category
     if category == 'Nature':        # If Nature selected so it will draw a random category
         selected = random.randint(0,2)
@@ -25,6 +27,10 @@ def backgroundSelection(category = None):
         path = duskPath
     elif category == 'Night':
         path = nightPath
+    elif category == 'Light':
+        path = lightPath
+    elif category == 'Dark':
+        path = darkPath
     else:
         print('Category do not exist. Error (001)')
     # This will filter image by its format so the other non image file will not distrub the randomize section

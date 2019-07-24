@@ -85,6 +85,7 @@ def drawAnotherSosmed(#isTrue=False,
                         backgroundPath=backgroundPath,
                         fontPath=fontPath,
                         fontSize=fontSize,
+                        fontColor='white',
                         ratioHeight = 5,
                         account_IG = None ,
                         account_FB = None ,
@@ -135,7 +136,7 @@ def drawAnotherSosmed(#isTrue=False,
             textsize = font.getsize(account)   #Getting the width and height of the text
             nameAccCanvas = Image.new('RGBA',(textsize[0]+fontSize//3,textsize[1]),0)
             drawNAC = ImageDraw.Draw(nameAccCanvas)
-            drawNAC.text((0,0), account, font = font, fill = 'white')
+            drawNAC.text((0,0), account, font = font, fill = fontColor)
             # nameAccCanvas.show()
             accountRatio = (logoH)/textsize[1]
             accountNewSize = int(textsize[0]*accountRatio), int(textsize[1]*accountRatio)

@@ -12,7 +12,7 @@ from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
 
-img = backgroundSelection(category='Nature').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Light').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -29,11 +29,12 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = Image.fromarray(img)
 #Done, now any further code is using PIL instead
 #Making the big text, and small text
+maroon = '#FFA781'
 img = drawTitleStyle2(bigText="Lebih dari ini", 
-                        littleText='pernah kita lalui',
+                        littleText='Pernah Kita Lalui',
                         imageSource=img,
-                        bigTextColor=(255,255,255,255), #selectColor(color='grey'),
-                        littleTextColor=(255,224,130),
+                        bigTextColor= (55,71,79),#, #selectColor(color='grey'),
+                        littleTextColor=(255,111,0),# (255,224,130),
                         bigFontSize=1300,
                         littleTextSize=500,
                         )
@@ -45,6 +46,7 @@ img = combineLogo(image=img,
                     instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
                     hashTag= drawHashtag(hashTag='Quotes Muslim'),
                     targetHeight= int(img.size[1]/15),
+                    isLight=True,
                     )
 # Drw socmed account left it None or Blank if there is no account
 img = drawAnotherSosmed(image=img,
@@ -57,6 +59,7 @@ img = drawAnotherSosmed(image=img,
                     account_TWITTER = 'LinkGish',
                     account_YOUTUBE = None,
                     ratioHeight=2,
+                    fontColor=(55,71,79),
                     )
 # Use time as a unique file name, so it will not be duplicated in the future
 nowTime = ctime()
