@@ -36,8 +36,10 @@ def TextDrawShade(size=None, font=None, image=None,
 
 def drawTitle(fontPath = None,
                 fontSize = None,
+                fontColor = (255,255,255), 
                 image = None,
                 text = None,
+                isShade = False,
                 blurRad = 10,
                 shadowColor = (0,0,0,255),
                 ):
@@ -48,18 +50,20 @@ def drawTitle(fontPath = None,
     textsize = font.getsize(text)   #Getting the width and height of the text
 
     canvas = Image.new('RGBA', textsize, 0)
-    #Create mask image using other module
-    mask_img = TextDrawShade(size=canvas.size,
-                font=font,
-                text=text,
-                placex=0,
-                placey=0,
-                fill=shadowColor,
-                radius=blurRad    
-                )
-    canvas.paste(mask_img, (0,0), mask=None)
+    if isShade==True:
+        #Create mask image using other module
+        mask_img = TextDrawShade(size=canvas.size,
+                    font=font,
+                    text=text,
+                    placex=0,
+                    placey=0,
+                    fill=shadowColor,
+                    radius=blurRad    
+                    )
+        canvas.paste(mask_img, (0,0), mask=None)
+        
     draw = ImageDraw.Draw(canvas)
-    draw.text((0,0), text, font = font, fill = 'white')
+    draw.text((0,0), text, font = font, fill = fontColor)
 
     ratio = (image.size[0]/2)/canvas.size[0]
     canvas = canvas.resize((int(canvas.size[0]*ratio), int(canvas.size[1]*ratio)) ,Image.ANTIALIAS)

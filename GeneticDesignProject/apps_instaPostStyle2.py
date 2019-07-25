@@ -7,12 +7,12 @@ from Algorithm_backgroundSelection import backgroundSelection
 from Algorithm_Crop1x1 import crop1x1_cv2
 from Algorithm_BackgroundManipulation import GammaCorrection, whatsGamma
 from Algorithm_drawTitleStyle2 import drawTitleStyle2
-from AlgorithmcolorMaterial import random2MaterialColor, selectColor
+from Algorithm_colorMaterial import randomMaterialColor, selectColor, LIGHTorDARK
 from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
 
-img = backgroundSelection(category='Light').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Nature').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -30,11 +30,11 @@ img = Image.fromarray(img)
 #Done, now any further code is using PIL instead
 #Making the big text, and small text
 maroon = '#FFA781'
-img = drawTitleStyle2(bigText="Lebih dari ini", 
-                        littleText='Pernah Kita Lalui',
+img = drawTitleStyle2(bigText="istiqomah,", 
+                        littleText='Kamu Pasti Kuat,.',
                         imageSource=img,
-                        bigTextColor= (55,71,79),#, #selectColor(color='grey'),
-                        littleTextColor=(255,111,0),# (255,224,130),
+                        bigTextColor= LIGHTorDARK(image=img),#, #selectColor(color='grey'),
+                        littleTextColor=randomMaterialColor(typeColor= LIGHTorDARK(image=img)), 
                         bigFontSize=1300,
                         littleTextSize=500,
                         )
@@ -43,13 +43,14 @@ img = drawCopyright(image=img)
 # Draw some logo in a combination size
 img = combineLogo(image=img,
                     mdc=drawMDClogo(),
-                    instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
-                    hashTag= drawHashtag(hashTag='Quotes Muslim'),
+                    # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
+                    hashTag= drawHashtag(hashTag='Motivational quotes'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
                     )
 # Drw socmed account left it None or Blank if there is no account
 img = drawAnotherSosmed(image=img,
+                    useOverlay=True,
                     account_IG='@Rzf.Gsh',
                     account_FB='M Razif Rizqullah',
                     account_TELEGRAM='LinkGish',
@@ -59,7 +60,7 @@ img = drawAnotherSosmed(image=img,
                     account_TWITTER = 'LinkGish',
                     account_YOUTUBE = None,
                     ratioHeight=2,
-                    fontColor=(55,71,79),
+                    # fontColor=(55,71,79),
                     )
 # Use time as a unique file name, so it will not be duplicated in the future
 nowTime = ctime()

@@ -1,6 +1,7 @@
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import cv2 
 import numpy as np
+from Algorithm_colorMaterial import LIGHTorDARK
 
 logoIGPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-instagram.png'
 backgroundPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/crop1x1_cv2.jpg'
@@ -87,6 +88,7 @@ def drawAnotherSosmed(#isTrue=False,
                         fontSize=fontSize,
                         fontColor='white',
                         ratioHeight = 5,
+                        useOverlay = False,
                         account_IG = None ,
                         account_FB = None ,
                         account_WA = None ,
@@ -176,10 +178,20 @@ def drawAnotherSosmed(#isTrue=False,
     # canvas.show()
     centerPaste = (img.size[0]-newCanvas.size[0])//2, int(img.size[1]*26/30)
     print(centerPaste)
-    img.paste(newCanvas,(centerPaste),newCanvas)
-    # newCanvas.show()
-    # img.show()
-    return img
+    colorDominant = LIGHTorDARK(image=img,
+                        posX=centerPaste[0],posY=centerPaste[1],
+                        sizeX=centerPaste[0]+newCanvas.size[0],sizeY=centerPaste[1]+newCanvas.size[1])
+    if (useOverlay==True):
+        OverlayColor = Image.new('RGBA',newCanvas.size, color=colorDominant)
+        newCanvas = Image.composite(OverlayColor, newCanvas, newCanvas)
+        img.paste(newCanvas,(centerPaste),newCanvas)
+        return img    
+    else:
+        img.paste(newCanvas,(centerPaste),newCanvas)
+        
+        # newCanvas.show()
+        # img.show()
+        return img
 
 '''
 drawAnotherSosmed(account_IG = '@rzf.gsh',

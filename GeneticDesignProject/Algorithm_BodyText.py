@@ -1,5 +1,6 @@
 import cv2
 import numpy as np 
+import random
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import textwrap
 from Algorithm_colorMaterial import randomMaterialColor
@@ -135,10 +136,10 @@ def makeBodyTextNano2(image = None,
     textMaxWidth = np.max(widthBox)
     textMaxHeight = np.max(heightBox)
     
-    textFieldsize = textMaxWidth, np.sum(heightBox)
+    textFieldsize = textMaxWidth+300, np.sum(heightBox)
     textField = Image.new('RGBA', textFieldsize, 0)
     draw = ImageDraw.Draw(textField, 'RGBA')
-    startX = 0
+    startX = 0+random.randint(0,300)
     startY = 0
     for texts in wrapped:
         words = texts.split(' ')
@@ -146,11 +147,11 @@ def makeBodyTextNano2(image = None,
         for word in words:
             print('word : ', word)
             word = str(word+' ')
-            randomColor = randomMaterialColor(typeColor=typeColor)
+            randomColor = randomMaterialColor(typeColor=typeColor) 
             draw.text((startX,startY), word , fill= randomColor, font= font)
             startX+= (font.getsize(word))[0]
         startY+=(font.getsize(texts))[1]
-        startX = 0
+        startX = 0+random.randint(0,300)
     print('draw text pass')
     # textField.show()
     fieldHRatio = ((fieldRatio/100 )*image.size[1])/textField.size[1]

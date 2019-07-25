@@ -5,25 +5,26 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 # Light material color 
-red = (239, 83, 80)
-pink = (236, 64, 122)
-purple = (171, 71, 188)
-deep_purple = (126, 87, 194)
-indigo = (92, 107, 192)
-blue = (66, 165, 245)
-light_blue = (41, 182, 246)
-cyan = (38, 198, 218)
-teal = (38, 166, 154)
-green = (102, 187, 106)
-light_green = (156, 204, 101)
-lime = (212, 225, 87)
-yellow = (255, 238, 88)
-amber = (255, 202, 40)
-orange = (255, 167, 38)
-deep_orange = (255, 112, 67)
-brown = (141, 110, 99)
-grey = (255,255,255)#(189, 189, 189)
-blue_grey = (120, 144, 156)
+red = (255,205,210)
+pink = (248,187,208)
+purple = (225,190,231)
+deep_purple = (209,196,233)
+indigo = (197,202,233)
+blue = (187,222,251)
+light_blue = (179,229,252)
+cyan = (178,235,242)
+teal = (178,223,219)
+
+green = (200,230,201)
+light_green = (220,237,200)
+lime = (240,244,195)
+yellow = (255,249,196)
+amber = (255,236,179)
+orange = (255,224,178)
+deep_orange = (255,204,188)
+brown = (215,204,200)
+grey = (245,245,245)
+blue_grey = (207,216,220)
 
 # Dark material color
 red800 = (198,40,40)
@@ -54,17 +55,17 @@ def randomMaterialColor(typeColor='Light'):
     listDarkColor = [red800,pink800,purple800,deepPurple800,indigo800, blue800, 
                 lightBlue800,cyan800,teal800,green800,lightGreen800,lime800,
                 yellow800,amber800,orange800,deepOrange800,brown800,green800,blueGrey800]
-    
-    if (typeColor == 'Light') or (typeColor == 'light'):
+    print(typeColor)
+    if (typeColor == 'Light') or (typeColor == 'light') or (typeColor == (255,255,255)):
         listColor = listLightColor
-    elif (typeColor == 'Dark') or (typeColor == 'dark'):
+    elif (typeColor == 'Dark') or (typeColor == 'dark') or (typeColor == (55,71,79)):
         listColor = listDarkColor
 
     count = len(listColor)
     # print(count)
     num = random.randint(0,count-1)
     result = listColor[num]
-    print(result)
+    print('Random color selected is : ',result)
     return result
 
 # Function to select color form database by it name
@@ -96,7 +97,10 @@ def LIGHTorDARK(image=None,
     y1 = posY
     x2 = sizeX
     y2 = sizeY
-    image = image.crop((x1,y1,x2,y2))
+    if posX==None:
+        image=image
+    else:
+        image = image.crop((x1,y1,x2,y2))
     print('Result crop is = ',image)
     # image.show()
 

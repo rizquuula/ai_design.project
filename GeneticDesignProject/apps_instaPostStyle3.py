@@ -10,8 +10,9 @@ from Algorithm_BodyText import makeBodyTextNano2
 from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
+from Algorithm_colorMaterial import LIGHTorDARK
 
-img = backgroundSelection(category='Night').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='City').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -36,8 +37,11 @@ img = combineLogo(image=img,
                     hashTag= drawHashtag(hashTag='today hadist'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
+                    ratioWidth = 50,
+                    ratioHeight = 80,
                     )
 # Drw socmed account left it None or Blank if there is no account
+'''
 img = drawAnotherSosmed(image=img,
                     account_IG='@Rzf.Gsh',
                     account_FB='M Razif Rizqullah',
@@ -48,17 +52,25 @@ img = drawAnotherSosmed(image=img,
                     account_TWITTER = 'LinkGish',
                     account_YOUTUBE = None,
                     ratioHeight=2,
-                    fontColor=(55,71,79),
-                    )
+                    useOverlay= True,
+                    # fontColor=(55,71,79),
 
+                    )
+'''
+whatsColoris = LIGHTorDARK(image=img,
+                        posX=img.size[0]//4,
+                        posY=img.size[0]//4,
+                        sizeX=img.size[0]//2,
+                        sizeY=img.size[0]//2
+                        )
 img = makeBodyTextNano2(image=img,
                     fontPath= '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf',
-                    text="'Tidaklah aku tinggal di dunia melainkan seperti musyafir yang berteduh di bawah pohon dan beristirahat lalu musyafir tersebut pergi meninggalkannya.' (HR.Tirmidzi)",
-                    placeRatio=12,
+                    text="Dibalik kata istiqomah ada perjuangan yang kuat, pengorbanan yang banyak, dan do'a yang tidak pernah berhenti.",
+                    placeRatio=25,
                     fieldRatio=30,
                     fontSize=100,
-                    wrapWidth=25,
-                    typeColor='Dark',
+                    wrapWidth=20,
+                    typeColor=whatsColoris,
                     )
 nowTime = ctime()
 # Input variable of time into the string 

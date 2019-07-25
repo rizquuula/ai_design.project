@@ -50,7 +50,7 @@ def combineLogo(image = None,
                 instagram = None,
                 ratioWidth = 50,
                 ratioHeight = 75,
-                isLight=False,
+                isLight=True,       # Activate auto coloring 
                 overlayColor= (55,71,79),
                 ):
     
