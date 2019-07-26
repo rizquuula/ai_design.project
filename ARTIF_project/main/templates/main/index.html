@@ -1,3 +1,4 @@
+{% block body_block %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +41,16 @@
                                     </li>
                                   </ul>
                     </div>
-                                  <div class="row">               
+                                  <div class="row">   
+                                    {% if user.is_authenticated %}            
                                       <div class="col-md-6">
-                                  <a href="login" type="button" class="btn btn-indigo">Masuk</a>
-                                  </div>
+                                        <a href="logout" type="button" class="btn btn-indigo">Keluar</a>
+                                      </div>
+                                    {% else %}
+                                      <div class="col-md-6">
+                                        <a href="masuk" type="button" class="btn btn-indigo">Masuk</a>
+                                      </div>
+                                    {% endif %}
                                   </div>
                 </nav>
     </section>
@@ -55,8 +62,14 @@
         <div class="row">
           <div class="col-md-6">
             <div class="animated fadeIn">
-            <p class="banner-title">Cara cepat buat desain grafis sesuai yang kamu mau.</p>
-            <a href="login" type="button" class="btn btn-purple">Coba sekarang</a>
+            {% if user.is_authenticated %}
+              <p class="banner-title">Hai.. {{ user.username }} :) Tunggu apa lagi. Ayo mulai buat desain grafis-mu sendiri.</p>
+              <a href="apps" type="button" class="btn btn-purple">Coba Sekarang Yuk..</a>
+            {% else %}
+              <p class="banner-title">Hanya di sini kamu bisa buat desain grafis-mu secara otomatis dengan cepat.</p>
+              <a href="masuk" type="button" class="btn btn-purple">Tertarik? Coba Sekarang!</a>
+            {% endif %}
+            
             </div>
           </div>
             <div class="col-md-6 text-center">
@@ -80,3 +93,4 @@
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
 </body>
 </html>
+{% endblock %}
