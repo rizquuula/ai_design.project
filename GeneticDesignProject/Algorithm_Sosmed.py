@@ -107,7 +107,7 @@ def drawAnotherSosmed(#isTrue=False,
     canvas = Image.new('RGBA',(img.size[0],img.size[1]))
     newCanvas = Image.new('RGBA',(0,0),0)
     # drawOn = ImageDraw.Draw(canvas)
-    logoH = img.size[1]*ratioHeight//100
+    logoH = int(img.size[1]*ratioHeight/100)
     # What logo will be create next? Make a list first
     listLogoPath = [pathLogo_FB, pathLogo_IG,
                         pathLogo_LINE, pathLogo_TELEGRAM, 
@@ -180,7 +180,7 @@ def drawAnotherSosmed(#isTrue=False,
     print(centerPaste)
     colorDominant = LIGHTorDARK(image=img,
                         posX=centerPaste[0],posY=centerPaste[1],
-                        sizeX=centerPaste[0]+newCanvas.size[0],sizeY=centerPaste[1]+newCanvas.size[1])
+                        sizeX=newCanvas.size[0],sizeY=newCanvas.size[1])
     if (useOverlay==True):
         OverlayColor = Image.new('RGBA',newCanvas.size, color=colorDominant)
         newCanvas = Image.composite(OverlayColor, newCanvas, newCanvas)

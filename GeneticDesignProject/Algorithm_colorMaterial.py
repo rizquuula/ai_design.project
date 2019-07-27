@@ -55,7 +55,7 @@ def randomMaterialColor(typeColor='Light'):
     listDarkColor = [red800,pink800,purple800,deepPurple800,indigo800, blue800, 
                 lightBlue800,cyan800,teal800,green800,lightGreen800,lime800,
                 yellow800,amber800,orange800,deepOrange800,brown800,green800,blueGrey800]
-    print(typeColor)
+    # print(typeColor)
     if (typeColor == 'Light') or (typeColor == 'light') or (typeColor == (255,255,255)):
         listColor = listLightColor
     elif (typeColor == 'Dark') or (typeColor == 'dark') or (typeColor == (55,71,79)):
@@ -76,6 +76,7 @@ def selectColor(color=None):
     listColor = [red, pink, purple, deep_purple, indigo, blue, light_blue, cyan,
                     teal, green, light_green, lime, yellow, amber, orange, deep_orange,
                     brown, grey, blue_grey]
+    #Select color by calling it name
     if color in listColorStr:
         selected = listColorStr.index(color)
         result =  listColor[selected]
@@ -92,15 +93,13 @@ def LIGHTorDARK(image=None,
             posX = None, posY = None,
             sizeX = None, sizeY = None,
             ):
-    print('Auto color BW detection start')
-    x1 = posX
-    y1 = posY
-    x2 = sizeX
-    y2 = sizeY
+    
     if posX==None:
         image=image
     else:
+        x1,y1,x2,y2 = posX, posY, (posX + sizeX), (posY + sizeY)
         image = image.crop((x1,y1,x2,y2))
+        print('Auto color BW detection start with (x1,y1,x2,y2) : ',posX,posY,(posX + sizeX),(posY + sizeY))
     print('Result crop is = ',image)
     # image.show()
 
@@ -110,17 +109,18 @@ def LIGHTorDARK(image=None,
     #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
     image = np.array(image)
     image = image[:, :, ::-1].copy() 
-
+    # ploting the Histogram so it can be analyzed
     plt.hist(image.ravel(),256,[0,256])
     histr = cv2.calcHist([image], [0], None, [256], [0,256]) #Channel set to 0 for Grayscale image
+    # Describe what is dark and light color, based on their histogram 
     dark = np.average(histr[:127])
     light = np.average(histr[127:])
-    print('Dark and Light = ',dark,' // ',light)
-    if dark>light:
+    print('Dark and Light = ',dark,' // ',light)        # Printing the dark and light param
+    if (dark)>light:        # If dark give it light
         lightColor = (255,255,255)
+        print('lightColor')
         return lightColor
-    else:
+    else:       # If light give it dark color
         darkColor = (55,71,79)
+        print('darkColor')
         return darkColor
-    
-    

@@ -29,7 +29,7 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = Image.fromarray(img)
 #Done, now any further code is using PIL instead
 #Making the big text, and small text
-maroon = '#FFA781'
+# maroon = '#FFA781'
 img = drawTitleStyle2(bigText="istiqomah,", 
                         littleText='Kamu Pasti Kuat,.',
                         imageSource=img,
@@ -43,11 +43,17 @@ img = drawCopyright(image=img)
 # Draw some logo in a combination size
 img = combineLogo(image=img,
                     mdc=drawMDClogo(),
+                    # logo1=drawCustomLogo(logoPath=logo1Path),
+                    # logo2=drawCustomLogo(logoPath=logo2Path),
+                    # logo3=drawCustomLogo(logoPath=logo3Path),
                     # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
-                    hashTag= drawHashtag(hashTag='Motivational quotes'),
+                    hashTag= drawHashtag(hashTag='today hadist'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
+                    ratioWidth = 50,
+                    ratioHeight = 80,
                     )
+                    
 # Drw socmed account left it None or Blank if there is no account
 img = drawAnotherSosmed(image=img,
                     useOverlay=True,

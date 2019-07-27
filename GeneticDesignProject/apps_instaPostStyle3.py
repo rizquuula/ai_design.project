@@ -9,10 +9,9 @@ from Algorithm_Crop1x1 import crop1x1_cv2
 from Algorithm_BodyText import makeBodyTextNano2
 from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
-from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
-from Algorithm_colorMaterial import LIGHTorDARK
+from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer, drawCustomLogo
 
-img = backgroundSelection(category='City').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Light').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -31,9 +30,16 @@ print('Background loaded success....')
 # Draw the copyright section in the bottom right 
 img = drawCopyright(image=img)
 # Draw some logo in a combination size
+# Logo path to create
+logo1Path = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-www.png'
+logo2Path = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-whatsapp.png'
+logo3Path = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-telegram.png'
 img = combineLogo(image=img,
                     mdc=drawMDClogo(),
-                    instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
+                    # logo1=drawCustomLogo(logoPath=logo1Path),
+                    # logo2=drawCustomLogo(logoPath=logo2Path),
+                    # logo3=drawCustomLogo(logoPath=logo3Path),
+                    # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
                     hashTag= drawHashtag(hashTag='today hadist'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
@@ -41,36 +47,32 @@ img = combineLogo(image=img,
                     ratioHeight = 80,
                     )
 # Drw socmed account left it None or Blank if there is no account
-'''
+
 img = drawAnotherSosmed(image=img,
                     account_IG='@Rzf.Gsh',
                     account_FB='M Razif Rizqullah',
-                    account_TELEGRAM='LinkGish',
-                    account_WA = None ,
-                    account_LINE = None ,
-                    account_WEB = None ,
+                    # account_TELEGRAM='LinkGish',
+                    # account_WA = '082238639221' ,
+                    # account_LINE = 'r.linkgish' ,
+                    # account_WEB = 'linkgish.com' ,
                     account_TWITTER = 'LinkGish',
-                    account_YOUTUBE = None,
+                    # account_YOUTUBE = 'M Razif Rizqullah',
                     ratioHeight=2,
                     useOverlay= True,
                     # fontColor=(55,71,79),
 
                     )
-'''
-whatsColoris = LIGHTorDARK(image=img,
-                        posX=img.size[0]//4,
-                        posY=img.size[0]//4,
-                        sizeX=img.size[0]//2,
-                        sizeY=img.size[0]//2
-                        )
+
 img = makeBodyTextNano2(image=img,
                     fontPath= '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf',
-                    text="Dibalik kata istiqomah ada perjuangan yang kuat, pengorbanan yang banyak, dan do'a yang tidak pernah berhenti.",
-                    placeRatio=25,
-                    fieldRatio=30,
+                    text="”Barang siapa yang menghendaki kehidupan dunia maka wajib baginya memiliki ilmu, dan barang siapa yang menghendaki kehidupan Akherat, maka wajib baginya memiliki ilmu, dan barang siapa menghendaki keduanya maka wajib baginya memiliki ilmu”. (HR.Tirmidzi)",
+                    placeXRatio=25,
+                    placeYRatio=30,
+                    fieldXRatio=50,
+                    fieldYRatio=50,
                     fontSize=100,
-                    wrapWidth=20,
-                    typeColor=whatsColoris,
+                    wrapWidth=30,
+                    # typeColor=whatsColoris,
                     )
 nowTime = ctime()
 # Input variable of time into the string 
@@ -80,3 +82,6 @@ print('Successfully saved at : ',savePath) # Notification while done
 # img = Image.open(savePath)
 img.thumbnail((500,500))    # Just show thumbnail instead of full size image, because we should keep the quality
 img.show() #Show the result
+# img = cv2.imread(savePath)
+# cv2.imshow('res', img)
+# cv2.waitKey(0)

@@ -6,6 +6,23 @@ from Algorithm_colorMaterial import LIGHTorDARK
 # import cv2
 pathLogo_MDC = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/Logo-lib/logo-MDC-Fit.png'
 
+def drawCustomLogo(logoPath = None,
+                targetHeight = 500,
+                ):
+    CustomLogo = Image.open(logoPath).convert('RGBA')
+
+    overlayColor = Image.new('RGBA',(CustomLogo.size),color='white')
+    
+    CustomLogoWhite = Image.composite(overlayColor,CustomLogo,CustomLogo)
+    
+    ratio = targetHeight/CustomLogoWhite.size[1]
+    newSize = int(ratio*CustomLogoWhite.size[0]), int(ratio*CustomLogoWhite.size[1])
+    CustomLogoWhite = CustomLogoWhite.resize(newSize, Image.ANTIALIAS)
+    print('Logo size = ',CustomLogoWhite.size)
+    
+    return CustomLogoWhite
+
+
 def drawMDClogo(logoPath = pathLogo_MDC,
                 targetHeight = 500,
                 ):
@@ -46,6 +63,9 @@ def logoResizer(logo = None,
 def combineLogo(image = None,
                 targetHeight = 100,
                 mdc = None,
+                logo1 = None,
+                logo2 = None,
+                logo3 = None,
                 hashTag = None,
                 instagram = None,
                 ratioWidth = 50,
@@ -56,6 +76,27 @@ def combineLogo(image = None,
     
     logoBox = []
     totalWidth = []
+    if logo1!= None:
+        logo1 = logoResizer(logo= logo1, targetHeight=targetHeight)
+        totalWidth.append(logo1.size[0]+targetHeight//2)
+        logoBox.append(logo1)
+    else:
+        pass
+
+    if logo2!= None:
+        logo2 = logoResizer(logo= logo2, targetHeight=targetHeight)
+        totalWidth.append(logo2.size[0]+targetHeight//2)
+        logoBox.append(logo2)
+    else:
+        pass
+
+    if logo3!= None:
+        logo3 = logoResizer(logo= logo3, targetHeight=targetHeight)
+        totalWidth.append(logo3.size[0]+targetHeight//2)
+        logoBox.append(logo3)
+    else:
+        pass
+
     if mdc!= None:
         mdc = logoResizer(logo= mdc, targetHeight=targetHeight)
         totalWidth.append(mdc.size[0]+targetHeight//2)
@@ -95,7 +136,8 @@ def combineLogo(image = None,
             placeW, placeH = (image.size[0]-canvas.size[0])*ratioWidth//100, image.size[1]*ratioHeight//100
             autoOverlayColor = LIGHTorDARK(image=image,
                                     posX=placeW,posY=placeH,
-                                    sizeX=(placeW+canvas.size[0]),sizeY=(placeH+canvas.size[1]))
+                                    sizeX=canvas.size[0],sizeY=canvas.size[1]
+                                    )
 
             darkC = Image.new('RGBA',canvas.size,color=autoOverlayColor)
             canvas = Image.composite(darkC, canvas, canvas)            

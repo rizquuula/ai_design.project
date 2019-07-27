@@ -1,4 +1,5 @@
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
+from Algorithm_colorMaterial import LIGHTorDARK, randomMaterialColor
 
 def TextDrawShade(size=None, font=None, image=None,
                 text=None, placex=None, placey=None, 
@@ -36,12 +37,16 @@ def TextDrawShade(size=None, font=None, image=None,
 
 def drawTitle(fontPath = None,
                 fontSize = None,
-                fontColor = (255,255,255), 
+                # fontColor = (255,255,255), 
                 image = None,
                 text = None,
                 isShade = False,
                 blurRad = 10,
                 shadowColor = (0,0,0,255),
+                placeXratio = 50,
+                placeYratio = 50,
+                sizeWratio = 50,
+                sizeHratio = 20,
                 ):
     # fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/IndieFlower/IndieFlower.ttf'   #Open custom font
     # fontSize = 400     #Set font size
@@ -49,7 +54,13 @@ def drawTitle(fontPath = None,
     # text = "Berubah,-"       #Input title text
     textsize = font.getsize(text)   #Getting the width and height of the text
 
+    placeWidth = int(placeXratio/100 * image.size[0])
+    placeHeight = int(placeYratio/100 * image.size[1])
+    
     canvas = Image.new('RGBA', textsize, 0)
+    
+    sizeWratio = ((sizeWratio/100)*image.size[0])/canvas.size[0]
+    
     if isShade==True:
         #Create mask image using other module
         mask_img = TextDrawShade(size=canvas.size,
@@ -63,14 +74,30 @@ def drawTitle(fontPath = None,
         canvas.paste(mask_img, (0,0), mask=None)
         
     draw = ImageDraw.Draw(canvas)
+    
+    typeColor = LIGHTorDARK(image=image,
+                            posX=placeWidth,
+                            posY=placeHeight,
+                            sizeX=canvas.size[0]*sizeWratio,
+                            sizeY=canvas.size[1]*sizeWratio,
+                            )
+
+    fontColor = randomMaterialColor(typeColor= typeColor)
     draw.text((0,0), text, font = font, fill = fontColor)
 
-    ratio = (image.size[0]/2)/canvas.size[0]
-    canvas = canvas.resize((int(canvas.size[0]*ratio), int(canvas.size[1]*ratio)) ,Image.ANTIALIAS)
+    canvas = canvas.resize((int(canvas.size[0]*sizeWratio), int(canvas.size[1]*sizeWratio)) ,Image.ANTIALIAS)
     # canvas.show()
-    image.paste(canvas,((image.size[0]-canvas.size[0])//2, image.size[1]//4),canvas)
+    maxHeight = int((sizeHratio/100)*image.size[1])
+    if canvas.size[1] > maxHeight:
+        newR = maxHeight/canvas.size[1]
+        canvas = canvas.resize((int(canvas.size[0]*newR), int(canvas.size[1]*newR)) ,Image.ANTIALIAS)
+        image.paste(canvas,(placeWidth-(canvas.size[0])//2,placeHeight-(canvas.size[1])//2),canvas)
+    else:
+        # image.paste(canvas,(placeWidth,placeHeight),canvas)
+        print('placeWidth, canvas.size = ',placeWidth, canvas.size)
+        image.paste(canvas,(placeWidth-(canvas.size[0])//2,placeHeight-(canvas.size[1])//2),canvas)
     # canvas.show()
-    return image, canvas
+    return image #, canvas
     # mask_img.show()
     # print(overlay_img.size, img_crop.size, mask_img.size) #Checking, all should be same
 

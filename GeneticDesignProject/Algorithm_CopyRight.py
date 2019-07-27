@@ -26,8 +26,9 @@ def drawCopyright(image = None,
     colorDominant = LIGHTorDARK(image=result_img,
                         posX=img_size*24//30,
                         posY=img_size*29//30,
-                        sizeX=img_size*24//30+canvas.size[0],
-                        sizeY=img_size*29//30+canvas.size[1])
+                        sizeX=canvas.size[0],
+                        sizeY=canvas.size[1]
+                        )
     if (useOverlay==True):
         OverlayColor = Image.new('RGBA',canvas.size, color=colorDominant)
         canvas = Image.composite(OverlayColor, canvas, canvas)
