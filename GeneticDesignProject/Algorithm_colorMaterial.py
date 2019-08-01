@@ -107,6 +107,7 @@ def LIGHTorDARK(image=None,
     #there is 4 category City, Dawn, Dusk, Night
     # image = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
     #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
+    image = image.convert('RGB')
     image = np.array(image)
     image = image[:, :, ::-1].copy() 
     # ploting the Histogram so it can be analyzed
@@ -124,3 +125,12 @@ def LIGHTorDARK(image=None,
         darkColor = (55,71,79)
         print('darkColor')
         return darkColor
+
+def addAlpha(rgb = None,
+        alpha = None,
+        ):
+    RGBA = rgb+(alpha,)
+    return RGBA
+
+# rgba = addAlpha(rgb=(1,1,1), alpha=20)
+# print(rgba)

@@ -65,7 +65,7 @@ img = drawAnotherSosmed(image=img,
                     account_WEB = None ,
                     account_TWITTER = 'LinkGish',
                     account_YOUTUBE = None,
-                    ratioHeight=2,
+                    ratioHeight=2.5,
                     # fontColor=(55,71,79),
                     )
 # Use time as a unique file name, so it will not be duplicated in the future

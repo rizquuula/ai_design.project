@@ -54,11 +54,34 @@ def drawMDClogo(logoPath = pathLogo_MDC,
 # drawMDClogo()
 
 def logoResizer(logo = None,
-                targetHeight = 500):
-    ratio = targetHeight/logo.size[1]
-    newSize = int(ratio*logo.size[0]), int(ratio*logo.size[1])
-    logo = logo.resize(newSize, Image.ANTIALIAS)
-    return logo 
+                targetHeight = None,
+                targetWidth = None):
+    if targetHeight != None:
+        ratio = targetHeight/logo.size[1]
+        newSize = int(ratio*logo.size[0]), int(ratio*logo.size[1])
+        logo = logo.resize(newSize, Image.ANTIALIAS)
+        return logo 
+    elif targetWidth != None:
+        ratio = targetWidth/logo.size[0]
+        newSize = int(ratio*logo.size[0]), int(ratio*logo.size[1])
+        logo = logo.resize(newSize, Image.ANTIALIAS)
+        return logo 
+
+def imgResizer(img = None,
+                targetHeight = None,
+                targetWidth = None):
+    if targetHeight != None:
+        ratio = targetHeight/img.size[1]
+        newSize = int(ratio*img.size[0]), int(ratio*img.size[1])
+        print ('Resizer (r & res) = ',ratio, newSize)
+        img = img.resize(newSize, Image.ANTIALIAS)
+        return img 
+    elif targetWidth != None:
+        ratio = targetWidth/img.size[0]
+        newSize = int(ratio*img.size[0]), int(ratio*img.size[1])
+        print ('Resizer (r & res) = ',ratio, newSize)
+        img = img.resize(newSize, Image.ANTIALIAS)
+        return img 
 
 def combineLogo(image = None,
                 targetHeight = 100,
@@ -77,21 +100,21 @@ def combineLogo(image = None,
     logoBox = []
     totalWidth = []
     if logo1!= None:
-        logo1 = logoResizer(logo= logo1, targetHeight=targetHeight)
+        logo1 = logoResizer(logo= logo1, targetHeight=targetHeight*80//100)
         totalWidth.append(logo1.size[0]+targetHeight//2)
         logoBox.append(logo1)
     else:
         pass
 
     if logo2!= None:
-        logo2 = logoResizer(logo= logo2, targetHeight=targetHeight)
+        logo2 = logoResizer(logo= logo2, targetHeight=targetHeight*80//100)
         totalWidth.append(logo2.size[0]+targetHeight//2)
         logoBox.append(logo2)
     else:
         pass
 
     if logo3!= None:
-        logo3 = logoResizer(logo= logo3, targetHeight=targetHeight)
+        logo3 = logoResizer(logo= logo3, targetHeight=targetHeight*80//100)
         totalWidth.append(logo3.size[0]+targetHeight//2)
         logoBox.append(logo3)
     else:

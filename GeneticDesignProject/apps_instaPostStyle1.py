@@ -16,7 +16,7 @@ from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
 from Algorithm_colorMaterial import LIGHTorDARK, randomMaterialColor
 
-img = backgroundSelection(category='Dawn').convert('RGB')
+img = backgroundSelection(category='Dusk').convert('RGB')
 img = np.array(img)
 img = img[:, :, ::-1].copy() 
 gammaIs = whatsGamma(img)
@@ -26,7 +26,7 @@ img_size = 2000
 img = crop1x1_cv2(img,img_size)  #Crop the image in square dimension
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
 img = Image.fromarray(img)
-TITLE_TEXT = "Hakikat Ilmu,"
+TITLE_TEXT = "Sayang-Nya,"
 img = drawTitle(fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Kaushan_Script/KaushanScript-Regular.ttf',
                         fontSize = 400,
                         # fontColor= randomMaterialColor(typeColor= LIGHTorDARK(image=img)), 
@@ -43,13 +43,14 @@ img = drawTitle(fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/
 # img = img[0]
 
 #Make body text
-typedBodyText = "”Barang siapa yang menghendaki kehidupan dunia maka wajib baginya memiliki ilmu, dan barang siapa yang menghendaki kehidupan Akherat, maka wajib baginya memiliki ilmu, dan barang siapa menghendaki keduanya maka wajib baginya memiliki ilmu”. (HR.Tirmidzi)"
-BodyFont = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Marck_Script/MarckScript-Regular.ttf'
+typedBodyText = "Diriwayatkan dari Abi Hurairah r.a, dia berkata; telah bersabda Rasulullah saw “Ketika Allah menetapkan penciptaan makhluk, Dia menuliskan dalam kitab-Nya ketetapan untuk diri-Nya sendiri: Sesungguhnya rahmat-Ku (kasih sayang-Ku) mengalahkan murka-Ku” (diriwayatkan oleh Muslim begitu juga oleh al-Bukhari, an-Nasa-i dan Ibnu Majah)"
+# BodyFont = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Marck_Script/MarckScript-Regular.ttf'
+# fontPath= '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf'
 img = MakeBodyText(image=img,
                         text=typedBodyText,
-                        FONT_PATH=BodyFont,
+                        FONT_PATH='/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf',# BodyFont,
                         FONT_SIZE=500,
-                        wrap_width=35,
+                        wrap_width=45,
                         padding=10,
                         # isBackRect=True,
                         # rect_fill=(255,255,255,180),
@@ -66,7 +67,8 @@ img = combineLogo(image=img,
                     # logo2=drawCustomLogo(logoPath=logo2Path),
                     # logo3=drawCustomLogo(logoPath=logo3Path),
                     # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
-                    hashTag= drawHashtag(hashTag='today hadist'),
+                    hashTag= drawHashtag(hashTag='Hadist qudsi'),
+                    logo1= drawHashtag(hashTag='Islamic quotes'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
                     ratioWidth = 50,
@@ -76,7 +78,7 @@ img = combineLogo(image=img,
 img = drawAnotherSosmed(image=img,
                     ratioHeight=2.5,
                     useOverlay=True,
-                    # account_IG = '@rzf.gsh',
+                    account_IG = '@rzf.gsh',
                     account_FB = 'M Razif Rizqullah',
                     account_WA = None,
                     account_LINE = 'r.linkgish',
