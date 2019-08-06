@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from random import randint
 from PIL import Image
-from Algorithm_logoMaker import imgResizer
+# from Algorithm_logoMaker import imgResizer
 
 # This algorithm will use gamma to dim the background
 def GammaCorrection(image=None, gamma=2.5):
@@ -107,3 +107,19 @@ def pasteTransparentImage(image = None,
     return image
 # pasteTransparentImage(image=whiteC,
 #             overlayImage=blackC).show()
+
+def imgResizer(img = None,
+                targetHeight = None,
+                targetWidth = None):
+    if targetHeight != None:
+        ratio = targetHeight/img.size[1]
+        newSize = int(ratio*img.size[0]), int(ratio*img.size[1])
+        # print ('Resizer (r & res) = ',ratio, newSize)
+        img = img.resize(newSize, Image.ANTIALIAS)
+        return img 
+    elif targetWidth != None:
+        ratio = targetWidth/img.size[0]
+        newSize = int(ratio*img.size[0]), int(ratio*img.size[1])
+        # print ('Resizer (r & res) = ',ratio, newSize)
+        img = img.resize(newSize, Image.ANTIALIAS)
+        return img 

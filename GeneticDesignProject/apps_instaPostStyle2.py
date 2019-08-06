@@ -12,7 +12,7 @@ from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer
 
-img = backgroundSelection(category='Nature').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Night').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -30,11 +30,13 @@ img = Image.fromarray(img)
 #Done, now any further code is using PIL instead
 #Making the big text, and small text
 # maroon = '#FFA781'
-img = drawTitleStyle2(bigText="istiqomah,", 
-                        littleText='Kamu Pasti Kuat,.',
+
+img = drawTitleStyle2(bigText="GEMPA BUMI", 
+                        fontPath='/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf',
+                        littleText='Hanya Peristiwa Alam?',
                         imageSource=img,
-                        bigTextColor= LIGHTorDARK(image=img),#, #selectColor(color='grey'),
-                        littleTextColor=randomMaterialColor(typeColor= LIGHTorDARK(image=img)), 
+                        bigTextColor= randomMaterialColor(typeColor= LIGHTorDARK(image=img)), #LIGHTorDARK(image=img),#, #selectColor(color='grey'),
+                        littleTextColor='white',# randomMaterialColor(typeColor= LIGHTorDARK(image=img)), 
                         bigFontSize=1300,
                         littleTextSize=500,
                         )
@@ -47,7 +49,8 @@ img = combineLogo(image=img,
                     # logo2=drawCustomLogo(logoPath=logo2Path),
                     # logo3=drawCustomLogo(logoPath=logo3Path),
                     # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
-                    hashTag= drawHashtag(hashTag='today hadist'),
+                    hashTag= drawHashtag(hashTag='baik berisik'),
+                    # logo3= drawHashtag(hashTag='generasi tarbiyah'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
                     ratioWidth = 50,
@@ -57,13 +60,13 @@ img = combineLogo(image=img,
 # Drw socmed account left it None or Blank if there is no account
 img = drawAnotherSosmed(image=img,
                     useOverlay=True,
-                    account_IG='@Rzf.Gsh',
+                    account_IG='Rzf.Gsh',
                     account_FB='M Razif Rizqullah',
-                    account_TELEGRAM='LinkGish',
+                    # account_TELEGRAM='LinkGish',
                     account_WA = None ,
                     account_LINE = None ,
                     account_WEB = None ,
-                    account_TWITTER = 'LinkGish',
+                    # account_TWITTER = 'LinkGish',
                     account_YOUTUBE = None,
                     ratioHeight=2.5,
                     # fontColor=(55,71,79),
@@ -71,7 +74,7 @@ img = drawAnotherSosmed(image=img,
 # Use time as a unique file name, so it will not be duplicated in the future
 nowTime = ctime()
 # Input variable of time into the string 
-savePath = ('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Result-lib/Style2 {}.jpg').format(nowTime)
+savePath = ('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Result-lib/instaStyle2/Style2 {}.jpg').format(nowTime)
 img.save(savePath)
 print('Successfully saved at : ',savePath) # Notification while done
 img.thumbnail((500,500))    # Just show thumbnail instead of full size image, because we should keep the quality

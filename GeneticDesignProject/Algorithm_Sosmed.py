@@ -89,6 +89,7 @@ def drawAnotherSosmed(#isTrue=False,
                         fontColor='white',
                         ratioHeight = 5,
                         useOverlay = False,
+                        forceColor = None,
                         account_IG = None ,
                         account_FB = None ,
                         account_WA = None ,
@@ -97,6 +98,8 @@ def drawAnotherSosmed(#isTrue=False,
                         account_WEB = None ,
                         account_TWITTER = None,
                         account_YOUTUBE = None,
+                        ratioXpaste = 50,
+                        ratioYpaste = 87,
                     ):
     # IMport background as size reference
     if image==None:
@@ -176,11 +179,15 @@ def drawAnotherSosmed(#isTrue=False,
     # newCanvas.paste(canvas,((img.size[0]-placeX)//2,0),canvas)
     # img.paste(canvas,(0,0),canvas)
     # canvas.show()
-    centerPaste = (img.size[0]-newCanvas.size[0])//2, int(img.size[1]*26/30)
+    centerPaste = int((img.size[0]-newCanvas.size[0])*ratioXpaste/100), int(img.size[1]*ratioYpaste/100)
     print(centerPaste)
-    colorDominant = LIGHTorDARK(image=img,
-                        posX=centerPaste[0],posY=centerPaste[1],
-                        sizeX=newCanvas.size[0],sizeY=newCanvas.size[1])
+    if forceColor == None:
+        colorDominant = LIGHTorDARK(image=img,
+                                posX=centerPaste[0],posY=centerPaste[1],
+                                sizeX=newCanvas.size[0],sizeY=newCanvas.size[1])
+    else:
+        colorDominant = forceColor
+        
     if (useOverlay==True):
         OverlayColor = Image.new('RGBA',newCanvas.size, color=colorDominant)
         newCanvas = Image.composite(OverlayColor, newCanvas, newCanvas)

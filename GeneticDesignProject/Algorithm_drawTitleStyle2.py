@@ -4,7 +4,9 @@ from Algorithm_Text import TextDrawShade
 # Draw the main text that constructed by Bid and Little text
 def drawTitleStyle2(imageSource = None,
                     bigText = "LinkGish",
+                    fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Tulpen_One/TulpenOne-Regular.ttf',   #Open custom font
                     littleText = "Innovation Center",
+                    subFontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Great_Vibes/GreatVibes-Regular.ttf',   #Open custom font
                     bigTextColor = (0,0,0,255),
                     littleTextColor = (255,255,255,255),
                     bigFontSize = 1300,
@@ -13,7 +15,7 @@ def drawTitleStyle2(imageSource = None,
     # Aliasing to 'img'
     img = imageSource
     #Draw big text in title
-    fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Tulpen_One/TulpenOne-Regular.ttf'   #Open custom font
+    
     fontSize = bigFontSize     #Set font size
     font = ImageFont.truetype(fontPath,fontSize,0,"unic",None)  #Generate font
     titleText = bigText
@@ -27,7 +29,7 @@ def drawTitleStyle2(imageSource = None,
 
     #Draw a sub text below the big title
     # subFontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Marck_Script/MarckScript-Regular.ttf'   #Open custom font
-    subFontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Great_Vibes/GreatVibes-Regular.ttf'   #Open custom font
+    
     subFontSize = littleTextSize
     subFont = ImageFont.truetype(subFontPath, subFontSize)
     subText = littleText
@@ -49,10 +51,10 @@ def drawTitleStyle2(imageSource = None,
     # subCanvas.show()
 
     #Making the full paste title and sub
-    fullCanvasSize = (canvas.size[0], canvas.size[1]+int(0.5*subCanvas.size[1]))
+    fullCanvasSize = (canvas.size[0], canvas.size[1]+int(subCanvas.size[1]))
     fullCanvas = Image.new('RGBA', (fullCanvasSize), 0)
     fullCanvas.paste(canvas, (0,0), canvas)
-    fullCanvas.paste(subCanvas, (fullCanvasSize[0]-subCanvas.size[0], fullCanvasSize[1]- int(subCanvas.size[1])), subCanvas)
+    fullCanvas.paste(subCanvas, (fullCanvasSize[0]-subCanvas.size[0], fullCanvasSize[1]-int(1.1*subCanvas.size[1])), subCanvas)
 
     # Change the size 
     ratio = (img.size[1]/4)/fullCanvasSize[1]

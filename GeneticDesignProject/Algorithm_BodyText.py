@@ -3,8 +3,8 @@ import numpy as np
 import random
 from PIL import ImageFont, ImageDraw, Image, ImageFilter
 import textwrap
-from Algorithm_colorMaterial import randomMaterialColor
-from Algorithm_colorMaterial import LIGHTorDARK
+from Algorithm_colorMaterial import randomMaterialColor, LIGHTorDARK
+from Algorithm_BackgroundManipulation import imgResizer
 
 def MakeBodyText(image=None, text=None, 
                     FONT_PATH=None, FONT_SIZE=None, 
@@ -228,3 +228,72 @@ def makeBodyTextNano2(image = None,
         return image
 
 # drawBodyText()
+
+def drawRectangularText(text = 'Semoga umat manusia berbahagia',
+                    image = Image.new('RGBA', (500,500), color='grey'),
+                    fontPath = '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Muli/Muli-BlackItalic.ttf',   #Open custom font
+                    fontSize = 200,
+                    padding = 10,
+                    ):
+    # print('as')
+    sideSize = image.size[0]//8
+    centerSize = image.size[0]//2
+    canvas = Image.new('RGBA', (image.size), 0)
+    font = ImageFont.truetype(fontPath, fontSize)
+
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle(((centerSize-sideSize, centerSize-sideSize), (centerSize+sideSize, centerSize+sideSize)), 
+                fill = 'red')
+
+    count = 0
+    
+    centerX = centerSize
+    centerY = centerSize
+    pos1X, pos1Y = 0, 0
+    pos2X, pos2Y = 0, 0
+    pos3X, pos3Y = 0, 0
+    pos4X, pos4Y = 0, 0
+
+    offsetYpos1, offsetYpos2, offsetYpos3, offsetYpos4 = 0, 0, 0, 0
+    # print('placeX, placeY = ', placeX, placeY)
+    text = text.split()
+    for word in text:
+        word = word.upper()
+        wordSize = font.getsize(word)
+        count+=1
+
+        textCanvas = Image.new('RGBA', wordSize, 0)
+        drawText = ImageDraw.Draw(textCanvas)
+        drawText.text((0,0), word, fill = 'white', font=font )
+        textWidth = int(sideSize*2.5)
+        textCanvas = imgResizer(img=textCanvas,
+                        targetWidth=textWidth)
+        
+        if count%4 == 1:
+            print('POTITION 1 :: ', word)
+            # print('wordSize, target W, resized = ', wordSize, textWidth, textCanvas.size)
+            pos1X = centerX - sideSize
+            pos1Y = centerY - sideSize - textCanvas.size[1] - padding
+            print('Paste Location = ', pos1X, pos1Y)
+            canvas.paste(textCanvas,(pos1X, pos1Y ),textCanvas)
+            pos1Y += textCanvas.size[1] + padding
+            offsetYpos1 = textCanvas.size[0] - sideSize*2
+        
+        elif count%4 == 2:
+            print('POTITION 2 :: ',word)
+            textCanvas = imgResizer(img = textCanvas,
+                                targetHeight = offsetYpos1)
+            textCanvas = textCanvas.rotate(-90, expand = 1)
+
+            pos2X = centerSize + sideSize + padding
+            pos2Y = centerSize - sideSize
+            print('Paste Location = ', pos2X, pos2Y)
+            canvas.paste(textCanvas,(pos2X, pos2Y ),textCanvas)
+            pos2X += textCanvas.size[0] + padding
+        elif count%4 == 3:
+            pass
+        elif count%4 == 0:
+            pass
+
+    return canvas
+drawRectangularText().show()

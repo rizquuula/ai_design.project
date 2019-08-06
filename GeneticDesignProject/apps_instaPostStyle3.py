@@ -11,7 +11,7 @@ from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer, drawCustomLogo
 
-img = backgroundSelection(category='Light').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Night').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -40,7 +40,7 @@ img = combineLogo(image=img,
                     # logo2=drawCustomLogo(logoPath=logo2Path),
                     # logo3=drawCustomLogo(logoPath=logo3Path),
                     # instagram= drawIGaccount(instaAccount='@Rzf.Gsh'),
-                    hashTag= drawHashtag(hashTag='today hadist'),
+                    hashTag= drawHashtag(hashTag='baik berisik'),
                     targetHeight= int(img.size[1]/15),
                     isLight=True,
                     ratioWidth = 50,
@@ -57,7 +57,7 @@ img = drawAnotherSosmed(image=img,
                     # account_WEB = 'linkgish.com' ,
                     account_TWITTER = 'LinkGish',
                     # account_YOUTUBE = 'M Razif Rizqullah',
-                    ratioHeight=2,
+                    ratioHeight=2.5,
                     useOverlay= True,
                     # fontColor=(55,71,79),
 
@@ -65,9 +65,9 @@ img = drawAnotherSosmed(image=img,
 
 img = makeBodyTextNano2(image=img,
                     fontPath= '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf',
-                    text="”Barang siapa yang menghendaki kehidupan dunia maka wajib baginya memiliki ilmu, dan barang siapa yang menghendaki kehidupan Akherat, maka wajib baginya memiliki ilmu, dan barang siapa menghendaki keduanya maka wajib baginya memiliki ilmu”. (HR.Tirmidzi)",
+                    text="Apapa.",
                     placeXRatio=25,
-                    placeYRatio=30,
+                    placeYRatio=60,
                     fieldXRatio=50,
                     fieldYRatio=50,
                     fontSize=100,
@@ -76,7 +76,7 @@ img = makeBodyTextNano2(image=img,
                     )
 nowTime = ctime()
 # Input variable of time into the string 
-savePath = ('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Result-lib/Style3 {}.jpg').format(nowTime)
+savePath = ('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Result-lib/instaStyle3/Style3 {}.jpg').format(nowTime)
 img.save(savePath)
 print('Successfully saved at : ',savePath) # Notification while done
 # img = Image.open(savePath)

@@ -114,7 +114,7 @@ def LIGHTorDARK(image=None,
     plt.hist(image.ravel(),256,[0,256])
     histr = cv2.calcHist([image], [0], None, [256], [0,256]) #Channel set to 0 for Grayscale image
     # Describe what is dark and light color, based on their histogram 
-    dark = np.average(histr[:127])
+    dark = np.average(histr[:150])
     light = np.average(histr[127:])
     print('Dark and Light = ',dark,' // ',light)        # Printing the dark and light param
     if (dark)>light:        # If dark give it light
