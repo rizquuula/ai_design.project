@@ -1,0 +1,333 @@
+<style type="text/css">
+	.number-style {
+		/* font-size: 1.4em; */
+		/* margin-bottom: 10px; */
+	}
+	.white-standard-text{
+		color: #fff;
+		margin-left: 20px;
+		margin-top: 5px;
+	}
+	.number {
+		background: rgb(96,125,139);
+		color: rgb(96,125,139);
+		height: 42px;
+		width: 40px;
+		display: inline-block;
+		font-size: 1.6em;
+		/* margin-right: 4px; */
+		margin-left: 20px;
+		line-height: 43px;
+		text-align: center;
+		/* text-shadow: 0 1px 0 rgba(255,255,255,0.2); */
+		border-radius: 20px 10px 10px 20px;
+	}
+	.placeholder-text{
+		font-size: 15px;
+		text-align: center;
+	}
+	.checkbox-css{
+		margin-left: 20px;
+		/* vertical-align: -40px; */
+		/* padding: 2px 2px 2px 2px; */
+		color: #fff;
+	}
+	.vertical-align-center{
+		vertical-align: -4px;
+	}
+	.checkbox-text{
+		/* margin-left: 20px; */
+		padding: 2px 2px 2px 2px;
+		color: #fff;
+	}
+	
+	.title-text{
+		/* padding-top: 20px; */
+		background-color: rgb(96,125,139);
+		margin-left: 30px;
+		margin-top: 10px;
+		padding: 10px 10px 10px 10px;
+		font-size: 12px;
+		color:rgb(255,255,255);
+		border-radius: 20px 20px 20px 0px;
+	}
+	.form-inline {  
+	display: flex;
+	width: 100%;
+	flex-flow: row wrap;
+	align-items: center;
+	}
+
+	.form-inline label {
+	margin: 50px 10px 50px 50px;
+	}
+
+	.form-inline input {
+	width: 100%;
+	height: 100px;
+	border-radius: 20px 20px 20px 0px;
+	vertical-align: middle;
+	margin: 20px 10px 0px 20px;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	}
+
+	.form-inline button {
+	padding: 10px 20px;
+	background-color: dodgerblue;
+	border: 1px solid rgb(200, 68, 68);
+	color: white;
+	cursor: pointer;
+	}
+
+	.form-inline button:hover {
+	background-color: royalblue;
+	}
+
+	@media (max-width: 800px) {
+	.form-inline input {
+		margin: 10px 0;
+	}
+	
+	.form-inline {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	}
+
+	* {
+	box-sizing: border-box;
+	}
+
+	/* Create three unequal columns that floats next to each other */
+	.column {
+	float: left;
+	padding: 10px;
+	/* height: 100%; Should be removed. Only for demonstration */
+	}
+
+	.left, .middle {
+	width: 30%;
+	}
+
+	.right {
+	width: 40%;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	content: "";
+	display: table;
+	clear: both;
+	}
+
+	.text-center {
+		text-align: center;
+		color: #fff;
+		background-color: #333333;
+		padding: 7px 10px 10px 10px;
+		margin: 20px 0px 0px 0px;
+		margin-left: 20px;
+		margin-right: 20px;
+		border-radius: 5px 5px 5px 5px;
+		height: 30px;
+	}
+	.text-left {
+		text-align: left;
+		color: #fff;
+		padding: 0px;
+		margin: 5px 0px 10px 5px;
+	}
+	.app-name {
+		text-align: center;
+		color: #fff;
+		padding: 0px;
+		margin: 5px 0px 10px 5px;
+	}
+	.file-upload {
+		/* background-color: #ffffff; */
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	  
+	.file-upload-btn {
+		width: 100%;
+		margin: 0;
+		color: #fff;
+		background: rgb(96,125,139);
+		border: none;
+		padding: 10px;
+		border-radius: 4px;
+		border-bottom: 4px solid rgb(69,90,100);
+		transition: all .2s ease;
+		outline: none;
+		text-transform: uppercase;
+		font-weight: 700;
+	  }
+	  
+	.file-upload-btn:hover {
+		background:rgb(69,90,100);
+		color: #ffffff;
+		transition: all .2s ease;
+		cursor: pointer;
+	  }
+	  
+	.file-upload-btn:active {
+		border: 0;
+		transition: all .2s ease;
+	  }
+	  
+	.file-upload-content {
+		display: none;
+		text-align: center;
+	  }
+	  
+	.file-upload-input {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		outline: none;
+		opacity: 0;
+		cursor: pointer;
+	  }
+	  
+	.image-upload-wrap {
+		margin-top: 20px;
+		border: 4px dashed rgb(96,125,139);
+		position: relative;
+		/* height: 25%; */
+	  }
+	.image-resizer{
+		height: 100px;
+	}
+	.image-dropping,
+	.image-upload-wrap:hover {
+		background-color:rgb(96,125,139);
+		border: 4px dashed #ffffff;
+	  }
+	  
+	.image-title-wrap {
+		padding: 0 15px 15px 15px;
+		color: #222;
+	  }
+	  
+	.drag-text {
+		font-size: 100;
+		text-align: center;
+	  }
+	  
+	.drag-text h3 {
+		font-weight: 100;
+		text-transform: uppercase;
+		color: #fff;
+		padding: 20px 0;
+	  }
+	  
+	.file-upload-image {
+		max-height: 200px;
+		max-width: 200px;
+		margin: auto;
+		padding: 20px;
+	  }
+	  
+	.remove-image {
+		width: 200px;
+		margin: 0;
+		color: #fff;
+		background: rgb(244,67,54);
+		border: none;
+		padding: 10px;
+		border-radius: 4px;
+		border-bottom: 4px solid #b02818;
+		transition: all .2s ease;
+		outline: none;
+		text-transform: uppercase;
+		font-weight: 700;
+	  }
+	  
+	.remove-image:hover {
+		background: #c13b2a;
+		color: #ffffff;
+		transition: all .2s ease;
+		cursor: pointer;
+		}
+	
+	.remove-image:active {
+		border: 0;
+		transition: all .2s ease;
+	  }  
+	.custom-file-upload {
+		border: 1px solid #ccc;
+		display: inline-block;
+		padding: 6px 12px;
+		cursor: pointer;
+		}
+
+	.logo-input{
+		margin-left: 20px;
+		margin-top: -5px;
+		}
+
+	.logo-input input {
+		color: #fff;
+		}
+
+	.hastag-logo-form{
+		display: flex;
+		width: 100%;
+		flex-flow: row wrap;
+		align-items: center;
+	}
+	
+	.hashtag-logo-form input {
+		width: 90%;
+		height: 30px;
+		border-radius: 20px 20px 20px 0px;
+		vertical-align: middle;
+		margin: 0px 0px 0px 20px;
+		padding: 10px;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		}
+	.socmed-form{
+		display: flex;
+		width: 100%;
+		flex-flow: row wrap;
+		align-items: center;
+		}
+	.socmed-form input {
+		width: 90%;
+		height: 25px;
+		border-radius: 20px 20px 20px 0px;
+		vertical-align: middle;
+		margin: 1px;
+		padding: 10px;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		}
+	.placeholder-hashtag-text{
+			font-size: 12px;
+			text-align: center;
+		}
+	.row-socmed:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	.socmed-column {
+			float: left;
+			padding: 10px;
+			/* height: 100%; Should be removed. Only for demonstration */
+		}
+	.socmed-left{
+		width: 30%
+		}
+	.socmed-right{
+			width: 70%
+		}
+			
+</style>

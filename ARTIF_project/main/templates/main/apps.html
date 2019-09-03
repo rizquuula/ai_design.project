@@ -4,33 +4,227 @@
 <head>
 <link rel="icon" type="image/png" href="{% static 'asset/logo.png' %}" />
 <meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="{% static 'style.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.cs">
-<!-- Material Design Bootstrap -->
-<link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'style.css'%}">
-<link rel="stylesheet" href="{% static 'animate.min.css'%}">
 <title>aidesign.id | Solusi simple desain grafis buat kamu</title>
+<link rel="stylesheet" href="{% static '/css/formApps1.css' %}">
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 </head>
-<body>
-    <div class="col-md-6 text-center mx-auto">
-                <div class="animated fadeIn slow">
-                    <img src="{% static 'asset/undraw_under_construction_46pa.svg' %}" class="img-fluid" alt="error">
-                    <h2>Kita masih dalam pembangunan</h2>
-                    <h6>mohon maaf website masih dalam tahap pembangunan</h6>
-                    <a href="/"><button type="button" class="btn btn-danger">Keluar</button></a>
+<body style="background-color:rgb(12,12,12);">  
+        <h2 class="app-name"><b><i>AiDesign</i></b></h2>
+        <!-- <h2 class="app-name">Title Text Apps</h2> -->
+
+        <div class="row">
+            <div class="column left" style="background-color:rgb(25,25,25); border-radius: 50px 50px 50px 0px; padding-top:20px;">                
+                <!-- <span class="number">1</span> -->
+                <span class="title-text"><b>TEXT EDITOR</b></span>
+
+                <form class="form-inline" action="#">
+                    <input class="placeholder-text" type="text" placeholder="Masukkan Text Judul Besar..." />
+                </form>
+                <label class="checkbox-css">
+                  <input class="vertical-align-center" class="checkbox-text" type="checkbox" name="shadow-effect"> Efek Shadow</label>
+                </br>
+                <select style="margin-left: 20px;" id="country" name="country">
+                    <option value="aaa-none">-- Pilih Font --</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="comic-sans">Comic Sans</option>
+                    <option value="star-stella">Star Stella</option>
+                </select>
+                </br>
+                <label class="checkbox-css">
+                    <input class="vertical-align-center" type="checkbox" name="select-font" checked> Pilih Font Otomatis</input>
+                </label>
+                <!-- </br>
+                </br> -->
+                <!-- <h3 class="text-center"><b><i>TEXT KECIL</i></b></h3> -->
+                <form class="form-inline" action="#">
+                    <input class="placeholder-text" type="text" id="title-text" placeholder="Masukkan Text Kecil..." />
+                </form>
+                <label class="checkbox-css">
+                    <input class="vertical-align-center" type="checkbox" name="shadow-effect"> Efek Shadow
+                </label>
+                </br>
+                <select style="margin-left: 20px;" id="country" name="country">
+                    <option value="australia">-- Pilih Font --</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="comic-sans">Comic Sans</option>
+                    <option value="star-stella">Star Stella</option>
+                </select>
+                </br>
+                <label class="checkbox-css">
+                    <input class="vertical-align-center" type="checkbox" name="select-font" checked> Pilih Font Otomatis</input>
+                </label>
+                </br>
+                </br>
+                <!-- <h3 class="text-center"><b><i>BACKGROUND</i></b></h3>
+                <p>Pilih gambar otomatis berdasarkan kategori</p>
+                <select id="background-category" name="background-category">
+                    <option value="aaa-none">-- Pilih Kategori Gambar --</option>
+                    <option value="pemandangan-alam">Pemandangan Alam</option>
+                    <option value="kota">Kota</option>
+                    <option value="langit-pagi">Langit Pagi</option>
+                    <option value="langit-senja">Langit Senja</option>
+                </select> -->
+                
+                <!-- <form class="form-inline" action="/action_page.php">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter email" name="email">
+                </form> -->
+                <!-- </br>
+                <div class="fileUpload btn btn-info"> -->
+                    <!-- <span>Upload</span> -->
+                    <!-- <input type="file" class="upload" />
+                </div> -->
+                <!-- <label>
+                    <input type="checkbox" name="remember"> Remember me
+                </label> -->
+                <!-- </br>
+                <button type="submit">Submit</button> -->
+            </div>
+<!--  ///////////////////////////////////////////////  -->
+            <div class="column middle" style="background-color:rgb(25,25,25); border-radius: 50px 50px 50px 0px; padding-top:20px;">                
+              <span class="title-text"><b>TEMPLATE</b></span>
+                <!-- <h2>Column 1</h2> -->
+                <h3 class="text-center"><b>LOGO</b></h3>
+                <div class="white-standard-text"><p><b>Logo yang biasa digunakan:</b></p></div>
+                <label class="checkbox-css" style="margin-top: -10px; ">
+                  <input class="vertical-align-center" type="checkbox" name="select-logoAI" disabled="disabled" checked="checked"> Logo AiDesign</input>
+                </br>
+                  <input class="vertical-align-center" type="checkbox" name="select-logoMDC"> Logo MDC</input>
+                </br>
+                  <input class="vertical-align-center" type="checkbox" name="select-logoYS"> Logo Yuk Share</input>
+                </br>
+                </label>
+                <div class="white-standard-text"><p><b>Upload logo sendiri</b></p></div>
+                <!-- <label class="custom-file-upload">
+                  <input type="file"/>
+                  Custom Upload
+                </label> -->
+                <div class="logo-input">
+                  <input type="file"
+                    id="logo1" name="logo1" accept="image/png, image/jpeg">
+                  <input type="file"
+                    id="logo2" name="logo2" accept="image/png, image/jpeg">
+                  <!-- <input type="file"
+                    id="logo3" name="logo3" accept="image/png, image/jpeg"> -->
                 </div>
-    </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+                <div class="white-standard-text"><p><b>Logo #HashTag</b></p></div>
+
+                <form class="hashtag-logo-form" action="#">
+                    <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan Hashtag Logo (Maks 3 kata)..." />
+                </form>
+                <h3 class="text-center"><b>MEDIA SOSIAL</b></h3>
+                <!-- <div class="white-standard-text"><p><b>Akun media sosial</b></p></div> -->
+                <div class="row-socmed">
+                  <div class="socmed-column socmed-left">
+                    <div class="white-standard-text"><p>Instagram :</p></div>
+                    <div class="white-standard-text"><p>Facebook :</p></div>
+                    <div class="white-standard-text"><p>Twitter :</p></div>
+                    <div class="white-standard-text"><p>Youtube :</p></div>
+                  </div>
+                  <div class="socmed-column socmed-right">
+                      <form class="socmed-form" action="#">
+                          <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan ID" />
+                      </form>
+                      <form class="socmed-form" action="#">
+                          <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan ID" />
+                      </form>
+                      <form class="socmed-form" action="#">
+                          <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan ID" />
+                      </form>
+                      <form class="socmed-form" action="#">
+                          <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan ID" />
+                      </form>
+                  </div>
+                </div>
+                
+                <!-- <div class="white-standard-text"><p>WhatsApp :</p></div>
+                <div class="white-standard-text"><p>Telegram :</p></div>
+                <div class="white-standard-text"><p>Line :</p></div> -->
+
+            </div>
+<!--  ///////////////////////////////////////////////  -->
+            <div class="column right">  
+                
+                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                <script type="text/javascript" src="{% static 'js/formApps1.js' %}"></script>
+                <h3 class="text-center"><b>SIMPAN TEMPLATE</b></h3>
+                <form class="hashtag-logo-form" action="#">
+                    <input class="placeholder-hashtag-text" type="text" placeholder="Masukkan Nama Template" />
+                </form>
+                <div class="file-upload">
+                    <button class="file-upload-btn" type="button" onclick="#">SIMPAN TEMPLATE</button>
+                </div> 
+                
+                <h3 style="margin-top:-10px;" class="text-center"><b>MUAT TEMPLATE TERSIMPAN</b></h3>
+                <div class="file-upload">
+                    <select style="text-align: center;" class="file-upload-btn" id="country" name="country">
+                        <option value="australia">-- Pilih Template --</option>
+                        <option value="roboto">Roboto</option>
+                        <option value="comic-sans">Comic Sans</option>
+                        <option value="star-stella">Star Stella</option>
+                    </select>
+                  </div> 
+                
+                <h3 style="margin-top:-10px;" class="text-center"><b>BACKGROUND</b></h3>
+                <div class="file-upload">
+                  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                  <div class="image-resizer">
+                  <div class="image-upload-wrap image-resizer">
+                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                    <div class="drag-text">
+                      <h3>Drag and drop a file or select add Image</h3>
+                    </div>
+                  </div>
+
+                  <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                  </div>
+                </div>
+                </div>    
+            </div>
+        </div>
+
 <P class="text-center">Copyright 2019 aidesign by aidesign.id | All Rights Reserved </P>
 </body>
 </html>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<style type="text/css">
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 10px;
+}
+* {box-sizing: border-box;}
+h1 {
+  font-size: 50px;
+}
+h2 {
+  font-size: 25px;
+}
+h3 {
+  font-size: 15px;
+}
+1
+h4 {
+  font-size: 15px;
+}
+h5 {
+  font-size: 15px;
+}
+p {
+  font-size: 12px;
+}
+select {
+  font-size: 12px;
+}
+
+</style>
+
+<!-- <script type="text/javascript">
+  document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+  };
+</script> -->

@@ -296,4 +296,4 @@ def drawRectangularText(text = 'Semoga umat manusia berbahagia',
             pass
 
     return canvas
-drawRectangularText().show()
+# drawRectangularText().show()

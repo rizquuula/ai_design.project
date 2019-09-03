@@ -11,7 +11,7 @@ from Algorithm_Sosmed import drawHashtag, drawIGaccount, drawAnotherSosmed
 from Algorithm_CopyRight import drawCopyright
 from Algorithm_logoMaker import combineLogo, drawMDClogo, logoResizer, drawCustomLogo
 
-img = backgroundSelection(category='Night').convert('RGB') #Select background from random image in a category
+img = backgroundSelection(category='Dawn').convert('RGB') #Select background from random image in a category
 #there is 4 category City, Dawn, Dusk, Night
 # img = Image.open('/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Image-lib/background-lib/City/city-wallpaper-27.jpg')  #Import a single image as background
 #Converting PIL to OpenCV format (2 Dimension to 3 Dimensional Array)
@@ -65,13 +65,13 @@ img = drawAnotherSosmed(image=img,
 
 img = makeBodyTextNano2(image=img,
                     fontPath= '/home/linkgish/Desktop/WebApp2/GeneticDesignProject/Font-lib/Comfortaa/Comfortaa-Bold.ttf',
-                    text="Apapa.",
+                    text="Pulau asal kita sama. Pulau tujuan kita sama. Yang membedakan hanya jembatannya saja,.",
                     placeXRatio=25,
-                    placeYRatio=60,
+                    placeYRatio=40,
                     fieldXRatio=50,
                     fieldYRatio=50,
                     fontSize=100,
-                    wrapWidth=30,
+                    wrapWidth=25,
                     # typeColor=whatsColoris,
                     )
 nowTime = ctime()
